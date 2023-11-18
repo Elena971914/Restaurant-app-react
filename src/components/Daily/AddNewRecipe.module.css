@@ -1,0 +1,94 @@
+.form {
+  text-align: left;
+  background-color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding: 40px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.main {
+  background-color: beige;
+  padding: 50px 200px;
+}
+
+.block {
+  display: block;
+}
+
+.properties {
+  align-items: center;
+  padding: 10px 30px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.gridContainer {
+    width:95%;
+    display: grid;
+    grid-template-columns: 15% 65% 15%;
+    gap: 20px;
+    padding-left: 0px
+}
+
+.form button {
+    color: #FEA116;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #FEA116
+}
+
+.form button:hover {
+    color:white;
+    background-color: #FEA116;
+    transition: 0.2s linear;
+}
+
+.doubleContainer {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap:30px
+}
+
+.doubleContainer2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap:30px
+}
+
+.steps {
+    display:grid;
+    grid-template-columns: 70% 25%;
+    gap:30px;
+    padding-left: 0;
+}
+
+.form button.addBtn {
+margin: 10px;
+padding: 10px 30px
+}
+
+.form button.addBtn:hover {
+    color: green;
+    border-color:green;
+    transition: 0.2s linear;
+    background-color: white;
+}
+
+.form button.resetBtn{
+    margin: 10px;
+padding: 10px 30px
+}
+
+.form button.resetBtn:hover {
+    color: red;
+    border-color:red;
+    transition: 0.2s linear;
+    background-color: white;
+}
+

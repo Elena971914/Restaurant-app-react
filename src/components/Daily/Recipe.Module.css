@@ -1,0 +1,42 @@
+.recipeImg {
+    width: 50vw;
+    margin-top: 30px;
+}
+
+.button-back {
+    border-radius: 10px;
+    padding: 10px 30px;
+    background-color: #FEA116;
+    color:white;
+    box-shadow: none;
+    border-width: 0px ;
+    margin-top: 10px;
+}
+
+.main-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.recipe-container {
+    text-align: left;
+    width: 75%;
+    display: inline-block;
+}
+
+.ingredients-container {
+    text-align: left;
+    width: 20%;
+    display: inline-block
+}
+
+.flex-container {
+    padding:20px 50px;
+    margin-top: 30px;
+    display: inline-flex;
+    align-items: top;
+}
+
+.flex-container h4 {
+    text-align: center
+}
