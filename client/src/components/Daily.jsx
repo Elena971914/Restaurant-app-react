@@ -1,7 +1,19 @@
 import DailyRecipeItem from "./Daily/DailyRecipeItem";
-import clientRecipesList from "../assets/competitors-recipes"
+import * as compRecipesService from "../services/compRecipesServices"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styles from "./Daily/allRecipes.Module.css"
 
 export default function Daily() {
+    const [compRecipes, setCompRecipes] = useState([])
+    
+    useEffect(() => {
+        compRecipesService.getAll()
+        .then(result=> setCompRecipes(result))
+    }, []
+    )
+
+
     return(
         <div className="container-xxl pt-5 pb-3">
             <div className="container">
@@ -10,10 +22,9 @@ export default function Daily() {
                     <h1 className="mb-5">Current competitor meals</h1>
                 </div>
                 <div className="row g-4">
-                    <DailyRecipeItem recipe={clientRecipesList[0]}/>
-                    <DailyRecipeItem recipe={clientRecipesList[1]}/><DailyRecipeItem recipe={clientRecipesList[2]}/>
-                    <DailyRecipeItem recipe={clientRecipesList[3]}/>
+                    {compRecipes.map(recipe => <DailyRecipeItem key={recipe._id} {...recipe}/>)}
                 </div>
+                <Link to='/recipes/new'><button className="addButton">Add your recipe</button></Link>
             </div>
         </div>
     )

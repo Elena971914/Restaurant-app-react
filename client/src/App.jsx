@@ -4,7 +4,6 @@ import BackToTop from './components/BackToTop'
 import Footer from './components/Footer'
 import Menu from './components/Menu'
 import Navbar from './components/Navbar'
-import Services from './components/Services'
 import Daily from "./components/Daily"
 import HomePage from "./components/HomePage"
 import OurTeam from "./components/OurTeam"
@@ -14,9 +13,13 @@ import Contacts from "./components/Contacts"
 import Recipe from "./components/Daily/Recipe"
 import NotFound from "./components/NotFound"
 import AddNewRecipe from "./components/Daily/AddNewRecipe"
+import Login from "./components/Authentication/login"
+import Register from "./components/Authentication/register"
+import { UserProvider } from "./contexts/UserContext"
 
 function App() {
   return(
+    <UserProvider>
     <div className="container-xxl bg-white p-0">
       {/* <Spinner /> */}
       <Navbar />
@@ -32,6 +35,8 @@ function App() {
         <Route path='/booking' element={<Booking />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path='/team' element={<OurTeam />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />}/>
         <Route path='*' element={<NotFound />} />
       </Routes>
 
@@ -39,6 +44,7 @@ function App() {
       <BackToTop />
 
     </div>
+    </UserProvider>
   )
 }
 

@@ -11,11 +11,24 @@
     box-shadow: none;
     border-width: 0px ;
     margin-top: 10px;
+    display:block;
+    margin: 20px auto
 }
 
 .main-container {
     margin-top: 30px;
     text-align: center;
+}
+
+.flex-container {
+    padding:20px 50px;
+    margin-top: 30px;
+    display: inline-flex;
+    width: 90vw
+}
+
+.flex-container h4 {
+    text-align: center
 }
 
 .recipe-container {
@@ -28,15 +41,4 @@
     text-align: left;
     width: 20%;
     display: inline-block
-}
-
-.flex-container {
-    padding:20px 50px;
-    margin-top: 30px;
-    display: inline-flex;
-    align-items: top;
-}
-
-.flex-container h4 {
-    text-align: center
 }

@@ -1,0 +1,19 @@
+.loginField {
+    margin: 30px auto;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    width: 25vw;
+}
+
+.margin {
+    margin-top: 20px
+}
+
+.authButtons {
+    background-color: #FEA116;
+    border: none;
+    width: 100%
+}
