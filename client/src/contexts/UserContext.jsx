@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import * as authenticationServices from '../services/authenticationServices';
 import useRemainingState from "../hooks/useRemainingState";
@@ -10,6 +10,7 @@ export const UserProvider = ({
     children,
 }) => {
     const [user, setUser] = useRemainingState('user', {})
+    const [valid, setValid] = useState('true')
     const navigate = useNavigate()
 
     const loginHandler = async (email, password) => {
@@ -17,7 +18,9 @@ export const UserProvider = ({
         if (result.error === 'Invalid credentials') {
             // Handle invalid credentials scenario (e.g., display an error message to the user)
             console.log('Invalid credentials. Please try again.');
-        } else {
+            setValid('')
+        }
+         else {
         localStorage.setItem('accessToken', result.accessToken);
         setUser(result);
         navigate('/');
@@ -43,6 +46,7 @@ export const UserProvider = ({
         email: user.email,
         userId: user._id,
         isAuthenticated: !!user.accessToken,
+        isValid: valid
     };
 
     return (

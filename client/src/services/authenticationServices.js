@@ -6,7 +6,7 @@ export const login = async (email, password) => {
     try {
         const data = ({ email, password })
         const headers = getHeaders()
-        const response = await fetch(`${baseUrl}/users/login`, { method: 'POST', body: JSON.stringify(data), headers })
+        const response = await fetch(`${baseUrl}/login`, { method: 'POST', body: JSON.stringify(data), headers })
 
         if (response.status === 403) {
             // Handle incorrect credentials without throwing an error
@@ -16,9 +16,11 @@ export const login = async (email, password) => {
         }
 
         const result = await response.json()
+        console.log(result)
         return result;
-    } catch (error) {
-        console.error(error.message);
+    } 
+    catch (error) {
+        console.log(error);
         // Handle other errors if needed
     }
 };

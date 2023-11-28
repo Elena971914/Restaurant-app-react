@@ -5,7 +5,8 @@ import * as authenticationService from '../../services/authenticationServices'
 import UserContext from '../../contexts/UserContext'
 
 export default function Login() {
-    const { loginHandler }= useContext(UserContext)
+    const { loginHandler, isValid }= useContext(UserContext)
+
     const [values, setValues] = useState({email: '', password: ''});
 
     const onChange = (e) => {
@@ -19,6 +20,7 @@ export default function Login() {
 
   return (
       <form className="loginField" onSubmit={onSubmit}>
+      {!isValid && <p style={{color:"#FF0000"}}>You tried to enter with wrong credentials. These email and password are not registered yet.</p>}
         <label htmlFor="email">Email</label>
         <input type="text" name="email" value={values.email} onChange={onChange} placeholder="Email"></input>
         <label htmlFor="password">Password</label>

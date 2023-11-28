@@ -33,17 +33,15 @@ export default function Testimonials() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setUser(emailAreaValue);
+    setUser(values.email);
     const newTestimonial = await testimonialServices.create(
       user,
-      textareaValue
+      values.text
     );
-
-    newTestimonial.owner = { email };
 
     dispatch({
       type: "ADD_COMMENT",
-      data: newComment,
+      data: newTestimonial,
     });
   };
 
