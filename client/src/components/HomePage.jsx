@@ -3,6 +3,7 @@ import About from "./About"
 import Menu from "./Menu"
 import Daily from "./Daily"
 import Booking from "./Booking"
+import BackToTop from "./BackToTop"
 
 export default function HomePage() {
     return(
@@ -12,5 +13,6 @@ export default function HomePage() {
     <Menu />
     <Booking />
     <Daily />
+    <BackToTop />
     </>)
 }

@@ -1459,7 +1459,18 @@
                 "imageURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg",
             }
         },
-
+        testimonials: {
+            "35c62d76-8142-4626-8712-eeb96381bea8": {
+              "text": "This is the best restaurant and everything is so tasty. We always use the app to make reservations and it is very easy.",
+              "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+              "email" : "peter@abv.bg"
+            },
+            "35c62d76-8152-4622-8712-eeb96381bea8": {
+              "text": "A friend of mine won the award and his recipe is now in the menu, so my family decided to go ahead and participate as well. Every week we send the best recipes we got. Much fun! Good luck to everyone",
+              "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+              "email" : "george@abv.bg"
+            }
+          }
     };
     var rules$1 = {
         users: {

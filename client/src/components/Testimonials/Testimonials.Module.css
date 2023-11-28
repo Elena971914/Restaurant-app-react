@@ -1,0 +1,26 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 70vw;
+    padding: 50px 100px;
+    margin: 20px auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainContainer form {
+    padding-top:24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 35vh;
+    width: 30vw
+}
+
+.commentField {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 10px 20px;
+    margin-top:20px
+}

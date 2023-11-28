@@ -8,13 +8,14 @@ import Daily from "./components/Daily"
 import HomePage from "./components/HomePage"
 import OurTeam from "./components/OurTeam"
 import Booking from "./components/Booking"
-import Testimonials from "./components/Testimonials"
+import Testimonials from "./components/Testimonials/Testimonials"
 import Contacts from "./components/Contacts"
 import Recipe from "./components/Daily/Recipe"
 import NotFound from "./components/NotFound"
 import AddNewRecipe from "./components/Daily/AddNewRecipe"
 import Login from "./components/Authentication/login"
 import Register from "./components/Authentication/register"
+import Logout from "./components/Authentication/Logout"
 import { UserProvider } from "./contexts/UserContext"
 
 function App() {
@@ -37,11 +38,11 @@ function App() {
         <Route path='/team' element={<OurTeam />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
+        <Route path='/logout' element={<Logout />}/>
         <Route path='*' element={<NotFound />} />
       </Routes>
 
       <Footer />
-      <BackToTop />
 
     </div>
     </UserProvider>

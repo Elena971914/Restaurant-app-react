@@ -14,10 +14,14 @@ export const UserProvider = ({
 
     const loginHandler = async (email, password) => {
         const result = await authenticationServices.login(email, password);
+        if (result.error === 'Invalid credentials') {
+            // Handle invalid credentials scenario (e.g., display an error message to the user)
+            console.log('Invalid credentials. Please try again.');
+        } else {
         localStorage.setItem('accessToken', result.accessToken);
         setUser(result);
         navigate('/');
-    };
+    }};
 
     const registerHandler = async (email, password) => {
         const result = await authenticationServices.register(email, password);
@@ -28,7 +32,8 @@ export const UserProvider = ({
 
     const logoutHandler = () => {
         setUser({});
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('user')
     };
 
     const userValues = {
