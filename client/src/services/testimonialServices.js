@@ -15,3 +15,8 @@ export const getAll = async () => {
 
     return result;
 };
+
+export const remove = async (id) => {
+    const headers = getHeaders()
+    await fetch(`${BASE_URL}/${id}`, {method: 'DELETE', headers})
+}

@@ -6,6 +6,8 @@ const reducer = (state, action) => {
             return [...state, action.data];
         case 'EDIT_TESTIMONIAL':
             return state.map(c => c._id === action.data._id ? { ...c, text: action.data.text } : c)
+        case 'DELETE_TESTIMONIAL':
+            return state.filter(testimonial => testimonial._id !== action.id);
         default:
             return state;
     }

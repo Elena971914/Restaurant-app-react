@@ -8,8 +8,7 @@ import styles from "./Testimonials.Module.css";
 export default function Testimonials() {
   const { isAuthenticated, email } = useContext(UserContext);
   const [testimonials, dispatch] = useReducer(reducer, []);
-  const [text, setText] = useState('');
-  // const [manualPreRender, setManualPreRender] = useState("");
+  const [text, setText] = useState("");
 
   useEffect(() => {
     testimonialServices
@@ -24,7 +23,7 @@ export default function Testimonials() {
   }, []);
 
   const onChange = (e) => {
-    setText((state) => state = e.target.value);
+    setText((state) => (state = e.target.value));
   };
 
   const onSubmit = async (e) => {
@@ -36,23 +35,57 @@ export default function Testimonials() {
       data: newTestimonial,
     });
 
-    setText('')
-    // setManualPreRender("yes");
+    setText("");
   };
+
+  const deleteHandler = async (e) => {
+    try {
+      await testimonialServices.remove(e.target.id); // Assuming testimonialServices.remove(id) handles the deletion
+      dispatch({ type: "DELETE_TESTIMONIAL", id: e.target.id });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const editHandler = async (e) => {};
 
   return (
     <div className="mainContainer">
       <h1>TESTIMONIALS</h1>
 
-      {testimonials && (
+      {testimonials &&
         testimonials.map((testimonial) => (
           <div className="commentField" key={testimonial._id}>
             <small key={Math.random()}>{testimonial.email}</small>
             <p key={Math.random()}>{testimonial.text}</p>
+            {email === testimonial.email && (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={editHandler}
+                  style={{
+                    backgroundColor: "white",
+                    color: "orange",
+                    border: "2px solid orange",
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={deleteHandler}
+                  id={testimonial._id}
+                  className="btn"
+                >
+                  Delete
+                </button>
+              </>
+            )}
           </div>
-        )))}
+        ))}
 
-      {testimonials.length === 0 && (<h6>No comments from users.</h6>)}
+      {testimonials.length === 0 && <h6>No comments from users.</h6>}
 
       <form onSubmit={onSubmit}>
         <h3>TELL US YOUR OPINION</h3>
@@ -61,12 +94,20 @@ export default function Testimonials() {
             <h6>Please, login or register first.</h6>
             <div>
               <Link to="/login">
-                <button type="button" className="btn btn-primary" style={{width:"45%", marginRight:"30px"}}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ width: "45%", marginRight: "30px" }}
+                >
                   Login
                 </button>
               </Link>
               <Link to="/register">
-                <button type="button" className="btn btn-primary" style={{width:"45%"}}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ width: "45%" }}
+                >
                   Register
                 </button>
               </Link>
