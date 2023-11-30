@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import styles from "./AddNewRecipe.module.css";
 import UserContext from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
+import { create } from "../../services/compRecipesServices";
 
 const INITIAL_VALUES = {
   name: "",
@@ -103,7 +104,7 @@ export default function AddNewRecipe() {
   };
 
   //SUBMIT
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const objServer = { ...formValues };
@@ -115,7 +116,8 @@ export default function AddNewRecipe() {
     delete objServer.previewIngredients;
     objServer.author = email;
     
-    
+    const result = await create(objServer);
+    console.log(result)
   };
 
   return (
