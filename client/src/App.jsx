@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom"
 import About from './components/About'
-import BackToTop from './components/BackToTop'
 import Footer from './components/Footer'
 import Menu from './components/Menu'
 import Navbar from './components/Navbar'
 import Daily from "./components/Daily"
 import HomePage from "./components/HomePage"
-import OurTeam from "./components/OurTeam"
 import Booking from "./components/Booking"
 import Testimonials from "./components/Testimonials/Testimonials"
 import Contacts from "./components/Contacts"
@@ -35,7 +33,6 @@ function App() {
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/booking' element={<Booking />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path='/team' element={<OurTeam />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/logout' element={<Logout />}/>

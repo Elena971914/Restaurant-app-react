@@ -4,6 +4,7 @@
     "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
     "author": "Elena Petkova",
     "name": "Crock Pot Roast with wild onion",
+    "description": "Easy homeland meal for special occasions.",
     "ingredients": [
       "1 beef roast", "1 package brown gravy mix", "1 package dried Italian salad dressing mix",
                     "1 package dry ranch dressing mix",
@@ -15,37 +16,18 @@
       "Pour the water around the roast.",
       "Cook on low for 7-9 hours."
     ],
+    "type": "Lunch",
+    "servings": "4",
+    "cookingTime": "20",
+    "cuisine":"balkan",
     "imageURL": "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg"
-  },
-  "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-    "_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-    "author": "Stefan Rusinov",
-    "name": "Roasted Asparagus with kosher salt",
-    "ingredients": [
-      "1 lb asparagus",
-      "1 1/2 tbsp olive oil",
-      "1/2 tsp kosher salt"
-    ],
-    "steps": [
-      "Preheat oven to 425°F.",
-      "Cut off the woody bottom part of the asparagus spears and discard.",
-      "With a vegetable peeler, peel off the skin on the bottom 2-3 inches of the spears (this keeps the asparagus from being all.",
-      "Place asparagus on foil-lined baking sheet and drizzle with olive oil.",
-      "Sprinkle with salt.",
-      "With your hands, roll the asparagus around until they are evenly coated with oil and salt.",
-      "Roast for 10-15 minutes, depending on the thickness of your stalks and how tender you like them.",
-      "They should be tender when pierced with the tip of a knife.",
-      "The tips of the spears will get very brown but watch them to prevent burning.",
-      "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal."
-    ],
-    "imageURL": "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/50/84/7/picMcSyVd.jpg"
   },
   "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
     "_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
     "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
     "author": "Bisera Atanasova",
     "name": "Big Night Pizza with ham, cheese and herbs",
+    "description": "This meal is everybody's favorite",
     "ingredients": [
       "5 teaspoons yeast",
       "5 cups flour",
@@ -65,13 +47,18 @@
       "Bake at 400 deg Fahrenheit for 15 minutes.",
       "Enjoy!"
     ],
+    "type": "Dinner",
+    "servings": "2",
+    "cookingTime": "20",
+    "cuisine":"balkan",
     "imageURL": "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg"
   },
   "985d9eab-ad3e-4622-a5c8-116261fb1fd2": {
     "_id": "985d9eab-ad3e-4622-a5c8-116261fb1fd2",
     "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-    "author": "Peter Potter",
+    "author": "Stefan Rusinov",
     "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
+    "description": "A special recipe for special people",
     "ingredients": [
       "2 acorn squash",
       "boiling water",
@@ -90,6 +77,10 @@
       "Bake for 30-40 more minutes, until squash tender.",
       "Enjoy!"
     ],
+    "type": "Breakfast",
+    "servings": "2",
+    "cookingTime": "60",
+    "cuisine":"italian",
     "imageURL": "http://elanaspantry.com/wp-content/uploads/2008/10/acorn_squash_with_cranberry.jpg"
   },
   "985d9eab-ad4e-4622-a5c8-116261fb1fd2": {
@@ -97,6 +88,7 @@
     "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
     "author": "Alexander Alexov",
     "name": "Mic's Yorkshire Puds",
+    "description": "Should be on the table of every perfect breakfast",
     "ingredients": [
       "200g plain flour",
       " 3eggs",
@@ -114,6 +106,10 @@
       "Ladle the batter mix into the tin.",
       "Bake for 30 minutes until well browned and risen."
     ],
+    "type": "Breakfast",
+    "servings": "4",
+    "cookingTime": "30",
+    "cuisine":"american",
     "imageURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg"
   }
 }

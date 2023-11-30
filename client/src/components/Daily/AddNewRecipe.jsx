@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./AddNewRecipe.module.css";
+import UserContext from "../../contexts/UserContext";
+import { Link } from "react-router-dom";
 
 const INITIAL_VALUES = {
   name: "",
   image: "",
   description: "",
   cookingTime: 20,
-  preparationTime: 20,
-  servings: 0,
+  type: "Breakfast",
+  servings: 2,
   cuisine: "balkan",
   ingredients: [{ ingredient: "", quantity: "" }],
   previewIngredients: "",
@@ -16,6 +18,7 @@ const INITIAL_VALUES = {
 };
 
 export default function AddNewRecipe() {
+  const { isAuthenticated, email } = useContext(UserContext);
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
   const [ingredients, setIngredients] = useState(INITIAL_VALUES.ingredients);
   const [previewIngredients, setPreviewIngredients] = useState(
@@ -25,30 +28,30 @@ export default function AddNewRecipe() {
   const [previewSteps, setPreviewSteps] = useState(INITIAL_VALUES.previewSteps);
 
   const changeHandler = (e) => {
-    let value = "";
     if (e.target.type === "number") {
-      value = Number(e.target.value);
+      e.target.value = Number(e.target.value);
     }
-    setFormValues((state) => ({ ...state, [e.target.name]: value }));
+    setFormValues((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
 
   // INGREDIENTS
   const addIngredientButtonHandler = () => {
-    setIngredients([...ingredients, { ingredient: "", quantity: "" }]);
+    setIngredients((ingredients) => [
+      ...ingredients,
+      { ingredient: "", quantity: "" },
+    ]);
   };
+
   const changeIngredientsHandler = (e, i) => {
     const { name, value } = e.target;
-    const onchangeVal = [...ingredients];
-    onchangeVal[i][name] = value;
-    setIngredients(onchangeVal);
-    setPreviewIngredients(
-      ingredients.map((element, index) => (
-        <li key={index}>
-          {" "}
-          {element.quantity} {element.ingredient}
-        </li>
-      ))
-    );
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[i][name] = value;
+    setIngredients(updatedIngredients);
+
+    setFormValues((prevState) => ({
+      ...prevState,
+      ingredients: updatedIngredients.map((ingredient) => ({ ...ingredient })),
+    }));
   };
 
   const deleteIngredientHandler = (i) => {
@@ -58,7 +61,6 @@ export default function AddNewRecipe() {
     setPreviewIngredients(
       ingredients.map((element, index) => (
         <li key={index}>
-          {" "}
           {element.quantity} {element.ingredient}
         </li>
       ))
@@ -72,16 +74,18 @@ export default function AddNewRecipe() {
 
   //STEPS
   const addStepButtonHandler = () => {
-    setSteps([...steps, { step: "" }]);
+    setSteps((steps) => [...steps, { step: "" }]);
   };
+
   const changeStepsHandler = (e, i) => {
-    const { name, value } = e.target;
-    const onchangeVal = [...steps];
-    onchangeVal[i][name] = value;
-    setSteps(onchangeVal);
-    setPreviewSteps(
-      steps.map((element, index) => <li key={index}> {element.step}</li>)
-    );
+    const { value } = e.target;
+    const updatedSteps = [...steps];
+    updatedSteps[i].step = value;
+    setSteps(updatedSteps);
+    setFormValues((prevState) => ({
+      ...prevState,
+      steps: updatedSteps.map((step) => ({ step: step.step })),
+    }));
   };
 
   const deleteStepHandler = (i) => {
@@ -99,166 +103,212 @@ export default function AddNewRecipe() {
   };
 
   //SUBMIT
-  const submitButtonHandler = () => {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const objServer = { ...formValues };
+    objServer.ingredients = formValues.ingredients.map(
+      (ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`
+    );
+    objServer.steps = formValues.steps.map((step) => `${step.step}`);
+    delete objServer.previewSteps;
+    delete objServer.previewIngredients;
+    objServer.author = email;
+    
+    
+  };
 
   return (
+    <>
+  {isAuthenticated && (
     <div className={styles.main}>
-      <form className={styles.form}>
-        <h1>Add new recipe</h1>
-        <label htmlFor="name">Title</label>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <h1>Add new recipe</h1>
+      <label htmlFor="name">Title</label>
+      <input
+        className={styles.wide}
+        type="text"
+        name="name"
+        value={formValues.name}
+        onChange={changeHandler}
+      />
+      <br />
+      <label htmlFor="name">Image URL</label>
+      <input
+        className={styles.wide}
+        type="text"
+        name="image"
+        value={formValues.image}
+        onChange={changeHandler}
+      />
+      <br />
+      <label htmlFor="name">Description</label>
+      <textarea
+        rows="4"
+        cols="80"
+        type="text"
+        name="description"
+        value={formValues.description}
+        onChange={changeHandler}
+      />
+      <br />
+      <div className={styles.properties}>
+        <label htmlFor="type">Type</label>
+        <select id="type" name="type" onChange={changeHandler}>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+        </select>
+
+        <label htmlFor="cookingTime">Cooking time</label>
         <input
-          className={styles.wide}
-          type="text"
-          name="name"
-          value={formValues.name}
+          type="number"
+          name="cookingTime"
+          value={formValues.cookingTime}
           onChange={changeHandler}
         />
-        <br />
-        <label htmlFor="name">Image URL</label>
+
+        <label htmlFor="cookingTime">Servings</label>
         <input
-          className={styles.wide}
-          type="text"
-          name="name"
-          value={formValues.image}
+          type="number"
+          name="servings"
+          value={formValues.servings}
           onChange={changeHandler}
         />
-        <br />
-        <label htmlFor="name">Description</label>
-        <textarea
-          rows="4"
-          cols="80"
-          type="text"
-          name="description"
-          value={formValues.description}
-          onChange={changeHandler}
-        />
-        <br />
-        <div className={styles.properties}>
-          <label htmlFor="cookingTime">Preparation time</label>
-          <input
-            type="number"
-            name="preparationTime"
-            value={formValues.preparationTime}
-            onChange={changeHandler}
-          />
 
-          <label htmlFor="cookingTime">Cooking time</label>
-          <input
-            type="number"
-            name="cookingTime"
-            value={formValues.cookingTime}
-            onChange={changeHandler}
-          />
+        <label htmlFor="cuisine">Cuisine</label>
+        <select id="cuisine" name="cuisine" onChange={changeHandler}>
+          <option value="universal">Universal</option>
+          <option value="american">American</option>
+          <option value="italian">Italian</option>
+          <option value="asian">Asian</option>
+          <option value="balkan">Balkan</option>
+          <option value="english">English</option>
+        </select>
+      </div>
 
-          <label htmlFor="cookingTime">Servings</label>
-          <input
-            type="number"
-            name="servings"
-            value={formValues.servings}
-            onChange={changeHandler}
-          />
+      {/* INGREDIENTS  */}
+      <div className={styles.doubleContainer}>
+        <div className={styles.containerOne}>
+          <h4>Ingredients list</h4>
+          <div className={styles.gridContainer}>
+            <label htmlFor="quantity">Quantity</label>
+            <label htmlFor="ingredient">Ingredient</label>
+          </div>
+          {ingredients.map((currentIngredient, index) => (
+            <ul key={index} className={styles.gridContainer}>
+              <input
+                type="text"
+                name="quantity"
+                value={currentIngredient.quantity}
+                onChange={(e) => changeIngredientsHandler(e, index)}
+              ></input>
 
-          <label htmlFor="cuisine">Cuisine</label>
-          <select id="cuisine" name="cuisine" onChange={changeHandler}>
-            <option value="universal">Universal</option>
-            <option value="american">American</option>
-            <option value="italian">Italian</option>
-            <option value="asian">Asian</option>
-            <option value="balkan">Balkan</option>
-            <option value="english">English</option>
-          </select>
+              <input
+                type="text"
+                name="ingredient"
+                value={currentIngredient.ingredient}
+                onChange={(e) => changeIngredientsHandler(e, index)}
+              />
+              <button
+                type="button"
+                onClick={() => deleteIngredientHandler(index)}
+              >
+                Delete
+              </button>
+            </ul>
+          ))}
+          <button
+            type="button"
+            className={styles.addBtn}
+            onClick={addIngredientButtonHandler}
+          >
+            Add ingredient
+          </button>
+          <button
+            className={styles.resetBtn}
+            type="button"
+            onClick={resetIngredientsButtonHandler}
+          >
+            Reset ingredients
+          </button>
         </div>
 
-        {/* INGREDIENTS  */}
-        <div className={styles.doubleContainer}>
-          <div className={styles.containerOne}>
-            <h4>Ingredients list</h4>
-            <div className={styles.gridContainer}>
-              <label htmlFor="quantity">Quantity</label>
-              <label htmlFor="ingredient">Ingredient</label>
-            </div>
-            {ingredients.map((currentIngredient, index) => (
-              <ul key={index} className={styles.gridContainer}>
-                <input
-                  type="text"
-                  name="quantity"
-                  value={currentIngredient.quantity}
-                  onChange={(e) => changeIngredientsHandler(e, index)}
-                ></input>
-
-                <input
-                  type="text"
-                  name="ingredient"
-                  value={currentIngredient.ingredient}
-                  onChange={(e) => changeIngredientsHandler(e, index)}
-                />
-                <button
-                  type="button"
-                  onClick={() => deleteIngredientHandler(index)}
-                >
-                  Delete
-                </button>
-              </ul>
-            ))}
-            <button
-              type="button"
-              className={styles.addBtn}
-              onClick={addIngredientButtonHandler}
-            >
-              Add ingredient
-            </button>
-            <button
-              className={styles.resetBtn}
-              type="button"
-              onClick={resetIngredientsButtonHandler}
-            >
-              Reset ingredients
-            </button>
-          </div>
-
-          <div className={styles.containerTwo}>
-            <h4>Ingredients preview</h4>
-            <ol>{previewIngredients}</ol>
-          </div>
+        <div className={styles.containerTwo}>
+          <h4>Ingredients preview</h4>
+          <ul>{previewIngredients}</ul>
         </div>
+      </div>
 
-        <div className={styles.doubleContainer2}>
-        
-          <div className={styles.firstContainer}>
+      <div className={styles.doubleContainer2}>
+        <div className={styles.firstContainer}>
           <h4>Preparation steps</h4>
-            {steps.map((currentStep, index) => (
-              <ul key={index} className={styles.steps}>
-                <input
-                  type="text"
-                  name="step"
-                  value={currentStep.step}
-                  onChange={(e) => changeStepsHandler(e, index)}
-                ></input>
+          {steps.map((currentStep, index) => (
+            <ul key={index} className={styles.steps}>
+              <input
+                type="text"
+                name="step"
+                value={currentStep.step}
+                onChange={(e) => changeStepsHandler(e, index)}
+              ></input>
 
-                <button type="button" onClick={() => deleteStepHandler(index)}>
-                  Delete
-                </button>
-              </ul>
-            ))}
-            <button className={styles.addBtn} type="button" onClick={addStepButtonHandler}>
-              Add a step
-            </button>
-          <button className={styles.resetBtn} type="button" onClick={resetStepsButtonHandler}>
+              <button type="button" onClick={() => deleteStepHandler(index)}>
+                Delete
+              </button>
+            </ul>
+          ))}
+          <button
+            className={styles.addBtn}
+            type="button"
+            onClick={addStepButtonHandler}
+          >
+            Add a step
+          </button>
+          <button
+            className={styles.resetBtn}
+            type="button"
+            onClick={resetStepsButtonHandler}
+          >
             Reset steps
           </button>
-          </div>
-
-          <div className={styles.secondContainer}>
-            <h4>Steps preview</h4>
-            <ol>{previewSteps}</ol>
-          </div>
-          
         </div>
 
-        <button type="button" onClick={submitButtonHandler}>
-          Submit
-        </button>
-      </form>
+        <div className={styles.secondContainer}>
+          <h4>Steps preview</h4>
+          <ol>{previewSteps}</ol>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  )} 
+
+   {!isAuthenticated && (
+    <div style={{margin: "30px auto", width: '50vw', textAlign:'center'}}>
+      <h6>Please, login or register first.</h6>
+      <div>
+        <Link to="/login">
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ width: "45%", marginRight: "30px" }}
+          >
+            Login
+          </button>
+        </Link>
+        <Link to="/register">
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ width: "45%" }}
+          >
+            Register
+          </button>
+        </Link>
+      </div>
     </div>
-  );
+    )}
+    </>
+  )
 }
