@@ -19,7 +19,7 @@
     "type": "Lunch",
     "servings": "4",
     "cookingTime": "20",
-    "cuisine":"balkan",
+    "cuisine":"Balkan",
     "imageURL": "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg"
   },
   "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
@@ -50,7 +50,7 @@
     "type": "Dinner",
     "servings": "2",
     "cookingTime": "20",
-    "cuisine":"balkan",
+    "cuisine":"Balkan",
     "imageURL": "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg"
   },
   "985d9eab-ad3e-4622-a5c8-116261fb1fd2": {
@@ -80,7 +80,7 @@
     "type": "Breakfast",
     "servings": "2",
     "cookingTime": "60",
-    "cuisine":"italian",
+    "cuisine":"Italian",
     "imageURL": "http://elanaspantry.com/wp-content/uploads/2008/10/acorn_squash_with_cranberry.jpg"
   },
   "985d9eab-ad4e-4622-a5c8-116261fb1fd2": {
@@ -109,7 +109,7 @@
     "type": "Breakfast",
     "servings": "4",
     "cookingTime": "30",
-    "cuisine":"american",
+    "cuisine":"American",
     "imageURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg"
   }
 }

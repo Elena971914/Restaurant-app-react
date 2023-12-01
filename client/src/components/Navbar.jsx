@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 
 export default function Navbar() {
-    const {isAuthenticated, email} = useContext(UserContext)
+    const {isAuthenticated, email, fullName} = useContext(UserContext)
     return(
     <div className="container-xxl position-relative p-0">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
@@ -51,7 +51,7 @@ export default function Navbar() {
                             </div>
                         </div>
                 
-                {isAuthenticated && <small>{email}</small>}
+                {isAuthenticated && <small>{fullName}</small>}
             </nav>
         </div>
     )

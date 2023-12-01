@@ -16,7 +16,6 @@ export const UserProvider = ({
     const loginHandler = async (email, password) => {
         const result = await authenticationServices.login(email, password);
         if (result.error === 'Invalid credentials') {
-            // Handle invalid credentials scenario (e.g., display an error message to the user)
             console.log('Invalid credentials. Please try again.');
             setValid('')
         }
@@ -26,8 +25,8 @@ export const UserProvider = ({
         navigate('/');
     }};
 
-    const registerHandler = async (email, password) => {
-        const result = await authenticationServices.register(email, password);
+    const registerHandler = async (email, password, fullName) => {
+        const result = await authenticationServices.register(email, password, fullName);
         localStorage.setItem('accessToken', result.accessToken);
         setUser(result);
         navigate('/');
@@ -46,7 +45,8 @@ export const UserProvider = ({
         email: user.email,
         userId: user._id,
         isAuthenticated: !!user.accessToken,
-        isValid: valid
+        isValid: valid,
+        fullName: user.fullName
     };
 
     return (

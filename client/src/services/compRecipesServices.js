@@ -16,7 +16,6 @@ export const getOne = async(id) => {
     try {
         const response = await fetch(`${BASE_URL}/${id}`)
         const result = await response.json()
-        console.log("I am here")
         return result
     }
     catch {}

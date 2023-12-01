@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import styles from "./AddNewRecipe.module.css";
 import UserContext from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { create } from "../../services/compRecipesServices";
 
 const INITIAL_VALUES = {
@@ -19,14 +19,11 @@ const INITIAL_VALUES = {
 };
 
 export default function AddNewRecipe() {
-  const { isAuthenticated, email } = useContext(UserContext);
+  const navigate = useNavigate()
+  const { isAuthenticated, email, fullName } = useContext(UserContext);
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
   const [ingredients, setIngredients] = useState(INITIAL_VALUES.ingredients);
-  const [previewIngredients, setPreviewIngredients] = useState(
-    INITIAL_VALUES.previewIngredients
-  );
   const [steps, setSteps] = useState(INITIAL_VALUES.steps);
-  const [previewSteps, setPreviewSteps] = useState(INITIAL_VALUES.previewSteps);
 
   const changeHandler = (e) => {
     if (e.target.type === "number") {
@@ -114,10 +111,10 @@ export default function AddNewRecipe() {
     objServer.steps = formValues.steps.map((step) => `${step.step}`);
     delete objServer.previewSteps;
     delete objServer.previewIngredients;
-    objServer.author = email;
+    objServer.author = fullName || email;
     
     const result = await create(objServer);
-    console.log(result)
+    navigate('/recipes')
   };
 
   return (
@@ -180,17 +177,16 @@ export default function AddNewRecipe() {
 
         <label htmlFor="cuisine">Cuisine</label>
         <select id="cuisine" name="cuisine" onChange={changeHandler}>
-          <option value="universal">Universal</option>
-          <option value="american">American</option>
-          <option value="italian">Italian</option>
-          <option value="asian">Asian</option>
-          <option value="balkan">Balkan</option>
-          <option value="english">English</option>
+          <option value="Universal">Universal</option>
+          <option value="American">American</option>
+          <option value="Italian">Italian</option>
+          <option value="Asian">Asian</option>
+          <option value="Balkan">Balkan</option>
+          <option value="English">English</option>
         </select>
       </div>
 
       {/* INGREDIENTS  */}
-      <div className={styles.doubleContainer}>
         <div className={styles.containerOne}>
           <h4>Ingredients list</h4>
           <div className={styles.gridContainer}>
@@ -235,14 +231,8 @@ export default function AddNewRecipe() {
             Reset ingredients
           </button>
         </div>
+      
 
-        <div className={styles.containerTwo}>
-          <h4>Ingredients preview</h4>
-          <ul>{previewIngredients}</ul>
-        </div>
-      </div>
-
-      <div className={styles.doubleContainer2}>
         <div className={styles.firstContainer}>
           <h4>Preparation steps</h4>
           {steps.map((currentStep, index) => (
@@ -275,13 +265,7 @@ export default function AddNewRecipe() {
           </button>
         </div>
 
-        <div className={styles.secondContainer}>
-          <h4>Steps preview</h4>
-          <ol>{previewSteps}</ol>
-        </div>
-      </div>
-
-      <button type="submit">Submit</button>
+      <button type="submit" style={{ marginTop: "30px"}}>Submit</button>
     </form>
   </div>
   )} 

@@ -9,6 +9,8 @@ export default function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    firstName: "",
+    lastName: ""
   });
 
   const onChange = (e) => {
@@ -17,7 +19,8 @@ export default function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    registerHandler(values.email, values.password);
+    const fullName = `${values.firstName} ${values.lastName}`
+    registerHandler(values.email, values.password, fullName);
   };
 
   return (
@@ -38,13 +41,29 @@ export default function Register() {
         onChange={onChange}
         placeholder="Password"
       ></input>
-      <label htmlFor="confirmPassword">Password</label>
+      <label htmlFor="confirmPassword">Confirm password</label>
       <input
         type="password"
         name="confirmPassword"
         value={values.confirmPassword}
         onChange={onChange}
-        placeholder="Password"
+        placeholder="Confirm password"
+      ></input>
+      <label htmlFor="firstName">First name</label>
+      <input
+        type="text"
+        name="firstName"
+        value={values.firstName}
+        onChange={onChange}
+        placeholder="First name"
+      ></input>
+      <label htmlFor="lastName">Last name</label>
+      <input
+        type="text"
+        name="lastName"
+        value={values.lastName}
+        onChange={onChange}
+        placeholder="Last name"
       ></input>
 
       <button
