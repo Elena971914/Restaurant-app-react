@@ -1323,12 +1323,14 @@
             "35c62d76-8152-4626-8712-eeb96381bea8": {
                 email: "peter@abv.bg",
                 username: "Peter",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                fullName: "Peter Petrov"
             },
             "847ec027-f659-4086-8032-5173e2f9c93a": {
                 email: "george@abv.bg",
                 username: "George",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                fullName: "Georgi Ivanov"
             },
             "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
                 email: "admin@abv.bg",
@@ -1460,14 +1462,16 @@
             "35c62d76-8142-4626-8712-eeb96381bea8": {
               "text": "This is the best restaurant and everything is so tasty. We always use the app to make reservations and it is very easy.",
               "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "email" : "peter@abv.bg"
+              "fullName": "Peter Petrov"
+              
             },
             "35c62d76-8152-4622-8712-eeb96381bea8": {
               "text": "A friend of mine won the award and his recipe is now in the menu, so my family decided to go ahead and participate as well. Every week we send the best recipes we got. Much fun! Good luck to everyone",
               "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "email" : "george@abv.bg"
+              "fullName" : "Georgi Ivanov"
             }
           }
+          
     };
     var rules$1 = {
         users: {

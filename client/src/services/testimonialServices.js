@@ -2,8 +2,8 @@ import { getHeaders } from "./getHeaders";
 
 const BASE_URL = 'http://localhost:3030/data/testimonials'
 
-export const create = async (email, text) => {
-    const data = {email, text}
+export const create = async (fullName, text) => {
+    const data = {fullName, text}
     const headers = getHeaders()
     const newTestimonial = await fetch(BASE_URL, {method: 'POST', body: JSON.stringify(data), headers});
     const result = await newTestimonial.json()

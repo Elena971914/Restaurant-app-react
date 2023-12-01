@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 import styles from "./Testimonials.Module.css";
 
 export default function Testimonials() {
-  const { isAuthenticated, email } = useContext(UserContext);
+  const { isAuthenticated, email, fullName } = useContext(UserContext);
   const [testimonials, dispatch] = useReducer(reducer, []);
   const [text, setText] = useState("");
 
@@ -28,7 +28,7 @@ export default function Testimonials() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const newTestimonial = await testimonialServices.create(email, text);
+    const newTestimonial = await testimonialServices.create(fullName, text);
 
     dispatch({
       type: "ADD_TESTIMONIAL",
@@ -56,7 +56,7 @@ export default function Testimonials() {
       {testimonials &&
         testimonials.map((testimonial) => (
           <div className="commentField" key={testimonial._id}>
-            <small key={Math.random()}>{testimonial.email}</small>
+            <small key={Math.random()}>{testimonial.fullName}</small>
             <p key={Math.random()}>{testimonial.text}</p>
             {email === testimonial.email && (
               <>
