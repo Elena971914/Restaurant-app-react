@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import styles from "./AddNewRecipe.module.css";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
-import { create } from "../../services/compRecipesServices";
+import { create } from "../../../services/compRecipesServices";
 
 const INITIAL_VALUES = {
   name: "",

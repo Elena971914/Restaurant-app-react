@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { getBooking } from "../../services/bookingServices";
+import { getBooking } from "../../../services/bookingServices";
 import {Link, Navigate} from "react-router-dom"
 
 function SuccessfulBooking({ onClose, userId }) {

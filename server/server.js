@@ -1342,136 +1342,235 @@
         }
     };
     var seedData = {
+        menu: {
+            "1c7481a1-40a1-4c98-a795-588f7218b5e2": {
+                "id": "1c7481a1-40a1-4c98-a795-588f7218b5e2",
+                "name": "French toast",
+                "type": "breakfast",
+                "price": "15 BGN",
+                "recipe": "With chocolate, sweets, honey and cheese",
+                "img": "img/menu-9.jpg"
+            },
+            "1c7481a1-40a1-4c98-a795-488f7218b5t8": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7218b5t8",
+                "name": "English breakfast",
+                "type": "breakfast",
+                "price": "20 BGN",
+                "recipe": "Sausage, beans, tomatoes, fries, eggs and homemade bread with butter and herbs",
+                "img": "img/menu-10.png"
+            },
+            "1c7481a1-40a1-4c98-a795-488f7258b5e2": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7258b5e2",
+                "name": "French croissants",
+                "type": "breakfast",
+                "price": "20 BGN",
+                "recipe": "With chocolate, sweets, honey and cheese",
+                "img": "img/menu-11.jpg"
+            },
+            "1c7481a1-40a1-4c98-a795-488f7218b5er6": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7218b5er6",
+                "name": "Buns",
+                "type": "breakfast",
+                "price": "20 BGN",
+                "recipe": "With chocolate, sweets, honey and cheese",
+                "img": "img/menu-12.jpg"
+            }, 
+            "1c7481a1-40a1-4c98-a795-488f7218b768": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7218b768",
+                "name": "Appetizer",
+                "type": "lunch",
+                "price": "50 BGN",
+                "recipe": "Fillet Elena, pastrami, salami, yellow cheese, blue cheese, Camembert, bree cheese",
+                "img": "img/menu-1.jpg"
+            },
+            "1c3481a1-40a1-4c98-a795-488f7218b5e2": {
+                "id": "1c3481a1-40a1-4c98-a795-488f7218b5e2",
+                "name": "Roast beef",
+                "type": "lunch",
+                "price": "30 BGN",
+                "recipe": "Served with fries, hard-boiled eggs, and homemade bread with butter and herbs",
+                "img": "img/menu-2.jpg"
+            },
+            "1c7481a1-40a1-4c98-a795-488f7218bt67": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7218bt67",
+                "name": "Quesadilla",
+                "type": "lunch",
+                "price": "20 BGN",
+                "recipe": "Beef, beacon, tomatoes, parmesan cheese, corn, mayo sauce",
+                "img": "img/menu-3.jpg"
+            },
+            "1c7481a1-40a1-4c68-a795-488f7218b5e2": {
+                "id": "1c7481a1-40a1-4c68-a795-488f7218b5e2",
+                "name": "Ribeye steak Black Angus",
+                "type": "lunch",
+                "price": "35 BGN",
+                "recipe": "Served with grilled vegetables (pepper, zucchini, onion, potato, mushroom) and homemade bread with butter and herbs",
+                "img": "img/menu-4.jpg"
+            },
+            "1c7481a1-40a1-4c98-a795-488f721555e2": {
+                "id": "1c7481a1-40a1-4c98-a795-488f721555e2",
+                "name": "Bites Plateau",
+                "type": "dinner",
+                "price": "35 BGN",
+                "recipe": "Caviar, tirocafteri, sour cream, urnabez with herbs and homemade bread with butter",
+                "img": "img/menu-5.jpg"
+            },
+            "1c7481a1-40a1-4c98-a675-488f7218b5e2": {
+                "id": "1c7481a1-40a1-4c98-a675-488f7218b5e2",
+                "name": "Vienna schnitzel",
+                "type": "dinner",
+                "price": "20 BGN",
+                "recipe": "Served with homemade fries, tomatoes and cucumber salad",
+                "img": "img/menu-6.jpg"
+            },
+            "1c748441-40a1-4c98-a795-488f7218b5e2": {
+                "id": "1c748441-40a1-4c98-a795-488f7218b5e2",
+                "name": "Pizza a-la-mi",
+                "type": "dinner",
+                "price": "20 BGN",
+                "recipe": "Tomato sause, chicken, cheese, mushrooms, parmesan cheese, basil",
+                "img": "img/menu-7.jpg"
+            },
+            "1c7481a1-40a1-4c98-a795-488f7278b5e2": {
+                "id": "1c7481a1-40a1-4c98-a795-488f7278b5e2",
+                "name": "Secreto Iberico pork steak",
+                "type": "dinner",
+                "price": "25 BGN",
+                "recipe": "Served on canape of vegetables, with sauteed potatoes and homemade bread",
+                "img": "img/menu-8.jpg"
+            }
+
+        },
         competitorRecipes: {
             "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-              "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-              "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "author": "Elena Petkova",
-              "name": "Crock Pot Roast with wild onion",
-              "description": "Easy homeland meal for special occasions.",
-              "ingredients": [
-                "1 beef roast", "1 package brown gravy mix", "1 package dried Italian salad dressing mix",
-                              "1 package dry ranch dressing mix",
-                              "1/2 cup water"
-              ],
-              "steps": [
-                "Place beef roast in crock pot.",
-                "Mix the dried mixes together in a bowl and sprinkle over the roast.",
-                "Pour the water around the roast.",
-                "Cook on low for 7-9 hours."
-              ],
-              "type": "lunch",
-              "servings": "4",
-              "cookingTime": "20",
-              "cuisine":"Balkan",
-              "imageURL": "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg"
+                "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "author": "Elena Petkova",
+                "name": "Crock Pot Roast with wild onion",
+                "description": "Easy homeland meal for special occasions.",
+                "ingredients": [
+                    "1 beef roast", "1 package brown gravy mix", "1 package dried Italian salad dressing mix",
+                    "1 package dry ranch dressing mix",
+                    "1/2 cup water"
+                ],
+                "steps": [
+                    "Place beef roast in crock pot.",
+                    "Mix the dried mixes together in a bowl and sprinkle over the roast.",
+                    "Pour the water around the roast.",
+                    "Cook on low for 7-9 hours."
+                ],
+                "type": "lunch",
+                "servings": "4",
+                "cookingTime": "20",
+                "cuisine": "Balkan",
+                "imageURL": "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg"
             },
             "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-              "_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
-              "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "author": "Bisera Atanasova",
-              "name": "Big Night Pizza with ham, cheese and herbs",
-              "description": "This meal is everybody's favorite",
-              "ingredients": [
-                "5 teaspoons yeast",
-                "5 cups flour",
-                "4 tablespoons vegetable oil",
-                "2 tablespoons sugar",
-                "2 teaspoons salt",
-                "2 cups hot water",
-                "1/4 cup pizza sauce",
-                "3/4 cup mozzarella cheese"
-              ],
-              "steps": [
-                "Add hot water to yeast in a large bowl and let sit for 15 minutes.",
-                "Mix in oil, sugar, salt, and flour and let sit for 1 hour.",
-                "Knead the dough and spread onto a pan.",
-                "Spread pizza sauce and sprinkle cheese.",
-                "Add any optional toppings as you wish.",
-                "Bake at 400 deg Fahrenheit for 15 minutes.",
-                "Enjoy!"
-              ],
-              "type": "dinner",
-              "servings": "2",
-              "cookingTime": "20",
-              "cuisine":"Balkan",
-              "imageURL": "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg"
+                "_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "author": "Bisera Atanasova",
+                "name": "Big Night Pizza with ham, cheese and herbs",
+                "description": "This meal is everybody's favorite",
+                "ingredients": [
+                    "5 teaspoons yeast",
+                    "5 cups flour",
+                    "4 tablespoons vegetable oil",
+                    "2 tablespoons sugar",
+                    "2 teaspoons salt",
+                    "2 cups hot water",
+                    "1/4 cup pizza sauce",
+                    "3/4 cup mozzarella cheese"
+                ],
+                "steps": [
+                    "Add hot water to yeast in a large bowl and let sit for 15 minutes.",
+                    "Mix in oil, sugar, salt, and flour and let sit for 1 hour.",
+                    "Knead the dough and spread onto a pan.",
+                    "Spread pizza sauce and sprinkle cheese.",
+                    "Add any optional toppings as you wish.",
+                    "Bake at 400 deg Fahrenheit for 15 minutes.",
+                    "Enjoy!"
+                ],
+                "type": "dinner",
+                "servings": "2",
+                "cookingTime": "20",
+                "cuisine": "Balkan",
+                "imageURL": "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg"
             },
             "985d9eab-ad3e-4622-a5c8-116261fb1fd2": {
-              "_id": "985d9eab-ad3e-4622-a5c8-116261fb1fd2",
-              "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "author": "Stefan Rusinov",
-              "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
-              "description": "A special recipe for special people",
-              "ingredients": [
-                "2 acorn squash",
-                "boiling water",
-                "2 apples chopped into 1.4 inch pieces",
-                "1/2 cup dried cranberries",
-                "1 teaspoon cinnamon",
-                "2 tablespoons melted butter"
-              ],
-              "steps": [
-                "Cut squash in half, remove seeds.",
-                "Place squash in baking dish, cut-side down.",
-                "Pour 1/4-inch water into dish.",
-                "Bake for 30 minutes at 350 degrees F.",
-                "In large bowl, combine remaining ingredients.",
-                "Remove squash from oven, fill with mix.",
-                "Bake for 30-40 more minutes, until squash tender.",
-                "Enjoy!"
-              ],
-              "type": "breakfast",
-              "servings": "2",
-              "cookingTime": "60",
-              "cuisine":"Italian",
-              "imageURL": "http://elanaspantry.com/wp-content/uploads/2008/10/acorn_squash_with_cranberry.jpg"
+                "_id": "985d9eab-ad3e-4622-a5c8-116261fb1fd2",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "author": "Stefan Rusinov",
+                "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
+                "description": "A special recipe for special people",
+                "ingredients": [
+                    "2 acorn squash",
+                    "boiling water",
+                    "2 apples chopped into 1.4 inch pieces",
+                    "1/2 cup dried cranberries",
+                    "1 teaspoon cinnamon",
+                    "2 tablespoons melted butter"
+                ],
+                "steps": [
+                    "Cut squash in half, remove seeds.",
+                    "Place squash in baking dish, cut-side down.",
+                    "Pour 1/4-inch water into dish.",
+                    "Bake for 30 minutes at 350 degrees F.",
+                    "In large bowl, combine remaining ingredients.",
+                    "Remove squash from oven, fill with mix.",
+                    "Bake for 30-40 more minutes, until squash tender.",
+                    "Enjoy!"
+                ],
+                "type": "breakfast",
+                "servings": "2",
+                "cookingTime": "60",
+                "cuisine": "Italian",
+                "imageURL": "http://elanaspantry.com/wp-content/uploads/2008/10/acorn_squash_with_cranberry.jpg"
             },
             "985d9eab-ad4e-4622-a5c8-116261fb1fd2": {
-              "_id": "985d9eab-ad4e-4622-a5c8-116261fb1fd2",
-              "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "author": "Alexander Alexov",
-              "name": "Mic's Yorkshire Puds with cranberries",
-              "description": "Should be on the table of every perfect breakfast",
-              "ingredients": [
-                "200g plain flour",
-                " 3eggs",
-                "300ml milk",
-                "3 tbsp vegetable oil"
-              ],
-              "steps": [
-                "Put the flour and some seasoning into a large bowl.",
-                "Stir in eggs, one at a time.",
-                "Whisk in milk until you have a smooth batter.",
-                "Chill in the fridge for at least 30 minutes.",
-                "Heat oven to 220C/gas mark 7.",
-                "Pour the oil into the holes of a 8-hole muffin tin.",
-                "Heat tin in the oven for 5 minutes.",
-                "Ladle the batter mix into the tin.",
-                "Bake for 30 minutes until well browned and risen."
-              ],
-              "type": "breakfast",
-              "servings": "4",
-              "cookingTime": "30",
-              "cuisine":"American",
-              "imageURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg"
+                "_id": "985d9eab-ad4e-4622-a5c8-116261fb1fd2",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "author": "Alexander Alexov",
+                "name": "Mic's Yorkshire Puds with cranberries",
+                "description": "Should be on the table of every perfect breakfast",
+                "ingredients": [
+                    "200g plain flour",
+                    " 3eggs",
+                    "300ml milk",
+                    "3 tbsp vegetable oil"
+                ],
+                "steps": [
+                    "Put the flour and some seasoning into a large bowl.",
+                    "Stir in eggs, one at a time.",
+                    "Whisk in milk until you have a smooth batter.",
+                    "Chill in the fridge for at least 30 minutes.",
+                    "Heat oven to 220C/gas mark 7.",
+                    "Pour the oil into the holes of a 8-hole muffin tin.",
+                    "Heat tin in the oven for 5 minutes.",
+                    "Ladle the batter mix into the tin.",
+                    "Bake for 30 minutes until well browned and risen."
+                ],
+                "type": "breakfast",
+                "servings": "4",
+                "cookingTime": "30",
+                "cuisine": "American",
+                "imageURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg"
             }
-          }
-          ,
+        }
+        ,
         testimonials: {
             "35c62d76-8142-4626-8712-eeb96381bea8": {
-              "text": "This is the best restaurant and everything is so tasty. We always use the app to make reservations and it is very easy.",
-              "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "fullName": "Peter Petrov"
-              
+                "text": "This is the best restaurant and everything is so tasty. We always use the app to make reservations and it is very easy.",
+                "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "fullName": "Peter Petrov"
+
             },
             "35c62d76-8152-4622-8712-eeb96381bea8": {
-              "text": "A friend of mine won the award and his recipe is now in the menu, so my family decided to go ahead and participate as well. Every week we send the best recipes we got. Much fun! Good luck to everyone",
-              "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-              "fullName" : "Georgi Ivanov"
+                "text": "A friend of mine won the award and his recipe is now in the menu, so my family decided to go ahead and participate as well. Every week we send the best recipes we got. Much fun! Good luck to everyone",
+                "ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "fullName": "Georgi Ivanov"
             }
-          }
-          
+        }
+
     };
     var rules$1 = {
         users: {

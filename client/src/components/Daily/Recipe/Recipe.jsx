@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as compRecipesService from "../../services/compRecipesServices";
+import * as compRecipesService from "../../../services/compRecipesServices";
 import { Link } from "react-router-dom";
 import styles from "./Recipe.Module.css";
 

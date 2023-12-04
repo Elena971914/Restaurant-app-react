@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../../contexts/UserContext";
 import styles from "./Booking.Module.css";
-import * as bookingServices from "../../services/bookingServices"
-import SuccessfulBooking from "./SuccessfulBooking";
+import * as bookingServices from "../../../services/bookingServices"
+import SuccessfulBooking from "../SuccessfulBooking/SuccessfulBooking";
 
 export default function Booking() {
   const navigate = useNavigate();

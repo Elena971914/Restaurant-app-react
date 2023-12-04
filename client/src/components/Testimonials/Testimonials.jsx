@@ -4,11 +4,14 @@ import reducer from "./testimonialsReducer";
 import * as testimonialServices from "../../services/testimonialServices";
 import UserContext from "../../contexts/UserContext";
 import styles from "./Testimonials.Module.css";
+import EditTestimonial from "./EditTestimonial"
 
 export default function Testimonials() {
-  const { isAuthenticated, email, fullName } = useContext(UserContext);
+  const { isAuthenticated, fullName } = useContext(UserContext);
   const [testimonials, dispatch] = useReducer(reducer, []);
   const [text, setText] = useState("");
+  const [showEdit, setShowEdit] = useState(false)
+  const [editTestId, setEditTestId] = useState("")
 
   useEffect(() => {
     testimonialServices
@@ -20,7 +23,7 @@ export default function Testimonials() {
           data: result,
         })
       );
-  }, []);
+  }, [testimonials]);
 
   const onChange = (e) => {
     setText((state) => (state = e.target.value));
@@ -47,23 +50,29 @@ export default function Testimonials() {
     }
   };
 
-  const editHandler = async (e) => {};
+  const editHandler = async (e) => {
+    setEditTestId(e.target.id)
+    setShowEdit(true)
+  };
 
   return (
     <div className="mainContainer">
       <h1>TESTIMONIALS</h1>
+
+      {showEdit && <EditTestimonial id={editTestId} onClose={() => setShowEdit(false)}/>}
 
       {testimonials &&
         testimonials.map((testimonial) => (
           <div className="commentField" key={testimonial._id}>
             <small key={Math.random()}>{testimonial.fullName}</small>
             <p key={Math.random()}>{testimonial.text}</p>
-            {email === testimonial.email && (
+            {fullName === testimonial.fullName && (
               <>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={editHandler}
+                  id={testimonial._id}
                   style={{
                     backgroundColor: "white",
                     color: "orange",

@@ -1,100 +1,98 @@
-export default [
-    {
-        "id": 1,
+{
+    "1c7481a1-40a1-4c98-a795-588f7218b5e2": {
+        "id": "1c7481a1-40a1-4c98-a795-588f7218b5e2",
         "name": "French toast",
         "type": "breakfast",
         "price": "15 BGN",
         "recipe": "With chocolate, sweets, honey and cheese",
         "img": "img/menu-9.jpg"
-    
     },
-    {
-        "id": 2,
+    "1c7481a1-40a1-4c98-a795-488f7218b5t8":{
+        "id": "1c7481a1-40a1-4c98-a795-488f7218b5t8",
         "name": "English breakfast",
         "type": "breakfast",
         "price": "20 BGN",
         "recipe": "Sausage, beans, tomatoes, fries, eggs and homemade bread with butter and herbs",
         "img": "img/menu-10.png"
     },
-    {
-        "id": 3,
+    "1c7481a1-40a1-4c98-a795-488f7258b5e2":{
+        "id": "1c7481a1-40a1-4c98-a795-488f7258b5e2",
         "name": "French croissants",
         "type": "breakfast",
         "price": "20 BGN",
         "recipe": "With chocolate, sweets, honey and cheese",
         "img": "img/menu-11.jpg"
     },
-    {
-        "id": 4,
+    "1c7481a1-40a1-4c98-a795-488f7218b5er6":{
+        "id": "1c7481a1-40a1-4c98-a795-488f7218b5er6",
         "name": "Buns",
         "type": "breakfast",
         "price": "20 BGN",
         "recipe": "With chocolate, sweets, honey and cheese",
         "img": "img/menu-12.jpg"
-    },{
-    "id": 5,
+    },"1c7481a1-40a1-4c98-a795-488f7218b768":{
+    "id": "1c7481a1-40a1-4c98-a795-488f7218b768",
     "name": "Appetizer",
     "type": "lunch",
     "price": "50 BGN",
     "recipe": "Fillet Elena, pastrami, salami, yellow cheese, blue cheese, Camembert, bree cheese",
     "img": "img/menu-1.jpg"
 },
-{
-    "id": 6,
+"1c3481a1-40a1-4c98-a795-488f7218b5e2":{
+    "id": "1c3481a1-40a1-4c98-a795-488f7218b5e2",
     "name": "Roast beef",
     "type": "lunch",
     "price": "30 BGN",
     "recipe": "Served with fries, hard-boiled eggs, and homemade bread with butter and herbs",
     "img": "img/menu-2.jpg"
 },
-{
-    "id": 7,
+"1c7481a1-40a1-4c98-a795-488f7218bt67":{
+    "id": "1c7481a1-40a1-4c98-a795-488f7218bt67",
     "name": "Quesadilla",
     "type": "lunch",
     "price": "20 BGN",
     "recipe": "Beef, beacon, tomatoes, parmesan cheese, corn, mayo sauce",
     "img": "img/menu-3.jpg"
 },
-{
-    "id": 8,
+"1c7481a1-40a1-4c68-a795-488f7218b5e2":{
+    "id": "1c7481a1-40a1-4c68-a795-488f7218b5e2",
     "name": "Ribeye steak Black Angus",
     "type": "lunch",
     "price": "35 BGN",
     "recipe": "Served with grilled vegetables (pepper, zucchini, onion, potato, mushroom) and homemade bread with butter and herbs",
     "img": "img/menu-4.jpg"
 },
-{
-    "id": 9,
+"1c7481a1-40a1-4c98-a795-488f721555e2":{
+    "id": "1c7481a1-40a1-4c98-a795-488f721555e2",
     "name": "Bites Plateau",
     "type": "dinner",
     "price": "35 BGN",
     "recipe": "Caviar, tirocafteri, sour cream, urnabez with herbs and homemade bread with butter",
     "img": "img/menu-5.jpg"
 },
-{
-    "id": 10,
+"1c7481a1-40a1-4c98-a675-488f7218b5e2":{
+    "id": "1c7481a1-40a1-4c98-a675-488f7218b5e2",
     "name": "Vienna schnitzel",
     "type": "dinner",
     "price": "20 BGN",
     "recipe": "Served with homemade fries, tomatoes and cucumber salad",
     "img": "img/menu-6.jpg"
 },
-{
-    "id": 11,
+"1c748441-40a1-4c98-a795-488f7218b5e2":{
+    "id": "1c748441-40a1-4c98-a795-488f7218b5e2",
     "name": "Pizza a-la-mi",
     "type": "dinner",
     "price": "20 BGN",
     "recipe": "Tomato sause, chicken, cheese, mushrooms, parmesan cheese, basil",
     "img": "img/menu-7.jpg"
 },
-{
-    "id": 12,
+"1c7481a1-40a1-4c98-a795-488f7278b5e2":{
+    "id": "1c7481a1-40a1-4c98-a795-488f7278b5e2",
     "name": "Secreto Iberico pork steak",
     "type": "dinner",
     "price": "25 BGN",
     "recipe": "Served on canape of vegetables, with sauteed potatoes and homemade bread",
     "img": "img/menu-8.jpg"
-},
+}
 
-]
-
+}

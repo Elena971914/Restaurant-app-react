@@ -1,8 +1,8 @@
-import DailyRecipeItem from "./Daily/DailyRecipeItem";
-import * as compRecipesService from "../services/compRecipesServices"
+import DailyRecipeItem from "../DailyRecipeItem/DailyRecipeItem";
+import * as compRecipesService from "../../../services/compRecipesServices"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Daily/allRecipes.Module.css"
+import styles from "./Daily.Module.css"
 
 export default function Daily() {
     const [compRecipes, setCompRecipes] = useState([])

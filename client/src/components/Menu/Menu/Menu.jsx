@@ -1,8 +1,8 @@
-import MenuItem from "./Menu/MenuItem";
-import menuList from "../assets/menu";
-import MenuNavItem from "./Menu/MenuNavItem";
-import menuNavItems from "../assets/menu-nav"
+import MenuItem from "../MenuItem/MenuItem";
+import MenuNavItem from "../MenuNavItem/MenuNavItem";
+import menuNavItems from "../menu-nav"
 import { useState, useEffect} from "react"
+import * as menuServices from "../../../services/menuServices"
 
 export default function Menu() {
     const [menu, setMenu] = useState([])
@@ -10,7 +10,7 @@ export default function Menu() {
     const [menuType, setMenuType] = useState('lunch')
 
     useEffect(() => {
-        setMenu(menuList)
+        menuServices.getAll().then(setMenu)
         setMenuNav(menuNavItems)
     }, [])
 
