@@ -5,7 +5,7 @@ import Menu from './components/Menu'
 import Navbar from './components/Navbar'
 import Daily from "./components/Daily"
 import HomePage from "./components/HomePage"
-import Booking from "./components/Booking"
+import Booking from "./components/Booking/Booking"
 import Testimonials from "./components/Testimonials/Testimonials"
 import Contacts from "./components/Contacts"
 import Recipe from "./components/Daily/Recipe"
@@ -14,6 +14,7 @@ import AddNewRecipe from "./components/Daily/AddNewRecipe"
 import Login from "./components/Authentication/login"
 import Register from "./components/Authentication/register"
 import Logout from "./components/Authentication/Logout"
+import Profile from "./components/Profile/Profile"
 import { UserProvider } from "./contexts/UserContext"
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/logout' element={<Logout />}/>
+        <Route path='/profile' element={<Profile />}/>
         <Route path='*' element={<NotFound />} />
       </Routes>
 

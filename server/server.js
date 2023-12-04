@@ -1431,7 +1431,7 @@
               "_id": "985d9eab-ad4e-4622-a5c8-116261fb1fd2",
               "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
               "author": "Alexander Alexov",
-              "name": "Mic's Yorkshire Puds",
+              "name": "Mic's Yorkshire Puds with cranberries",
               "description": "Should be on the table of every perfect breakfast",
               "ingredients": [
                 "200g plain flour",

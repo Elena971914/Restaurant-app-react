@@ -776,7 +776,8 @@ var DateTimePicker = function ($, moment) {
         };
 
         DateTimePicker.prototype._getLastPickedDate = function _getLastPickedDate() {
-            return this._dates[this._getLastPickedDateIndex()];
+            var lastDate = this._dates[this._getLastPickedDateIndex()]; if (typeof lastDate == "undefined" || lastDate == null) { lastDate = this.getMoment(); } return lastDate;
+            // return this._dates[this._getLastPickedDateIndex()];
         };
 
         DateTimePicker.prototype._getLastPickedDateIndex = function _getLastPickedDateIndex() {
@@ -2719,6 +2720,7 @@ var TempusDominusBootstrap4 = function ($) {
     * ------------------------------------------------------------------------
     */
 
+    
 
     $(document).on(DateTimePicker.Event.CLICK_DATA_API, DateTimePicker.Selector.DATA_TOGGLE, function () {
         var $target = getSelectorFromElement($(this));
@@ -2738,6 +2740,7 @@ var TempusDominusBootstrap4 = function ($) {
         if ($target.length === 0) {
             return;
         }
+        if (config=='undefined' || config=="null") {return}
         if (config._options.debug || window.debug) {
             return;
         }
