@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import UserContext from "../../contexts/UserContext";
-import * as authenticationServices from "../../services/authenticationServices"
+import UserContext from "../../../contexts/UserContext";
+import * as authenticationServices from "../../../services/authenticationServices"
 
 export default function Logout() {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import UserContext from "../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 
 export default function Navbar() {
   const { isAuthenticated, email, fullName } = useContext(UserContext);

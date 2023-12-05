@@ -1,8 +1,8 @@
 import styles from './Login.Module.css'
 import { Link, useNavigate} from 'react-router-dom';
 import { useContext, useState} from 'react';
-import * as authenticationService from '../../services/authenticationServices'
-import UserContext from '../../contexts/UserContext'
+import * as authenticationService from '../../../services/authenticationServices'
+import UserContext from '../../../contexts/UserContext'
 
 export default function Login() {
     const { loginHandler, isValid }= useContext(UserContext)

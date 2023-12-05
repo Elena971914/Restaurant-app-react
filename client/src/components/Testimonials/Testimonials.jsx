@@ -4,7 +4,7 @@ import reducer from "./testimonialsReducer";
 import * as testimonialServices from "../../services/testimonialServices";
 import UserContext from "../../contexts/UserContext";
 import styles from "./Testimonials.Module.css";
-import EditTestimonial from "./EditTestimonial"
+import EditTestimonial from "./EditTestimonial/EditTestimonial"
 
 export default function Testimonials() {
   const { isAuthenticated, fullName } = useContext(UserContext);
@@ -23,7 +23,7 @@ export default function Testimonials() {
           data: result,
         })
       );
-  }, [testimonials]);
+  }, []);
 
   const onChange = (e) => {
     setText((state) => (state = e.target.value));
@@ -55,11 +55,24 @@ export default function Testimonials() {
     setShowEdit(true)
   };
 
+  const onClose = async () => {
+    setShowEdit(false)
+    testimonialServices
+      .getAll()
+      .then((result) => result.json())
+      .then((result) =>
+        dispatch({
+          type: "GET_ALL_TESTIMONIALS",
+          data: result,
+        })
+      );
+  }
+
   return (
     <div className="mainContainer">
       <h1>TESTIMONIALS</h1>
 
-      {showEdit && <EditTestimonial id={editTestId} onClose={() => setShowEdit(false)}/>}
+      {showEdit && <EditTestimonial id={editTestId} onClose={onClose} />}
 
       {testimonials &&
         testimonials.map((testimonial) => (

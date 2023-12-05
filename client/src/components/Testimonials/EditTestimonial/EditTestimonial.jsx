@@ -4,9 +4,9 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import * as testimonialServices from "../../services/testimonialServices";
+import * as testimonialServices from "../../../services/testimonialServices";
 import styles from "./EditTestimonial.Module.css"
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../../contexts/UserContext";
 
 
 function EditTestimonial({ onClose, id }) {
