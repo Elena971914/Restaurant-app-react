@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as compRecipesService from "../../../services/compRecipesServices";
 import { Link } from "react-router-dom";
 import styles from "./Recipe.Module.css";
+import UserContext from "../../../contexts/UserContext";
+import EditRecipe from "../EditRecipe/editRecipe";
+import { Button } from "react-bootstrap";
 
 export default function Recipe() {
-  // useNavigate
-
   const { id } = useParams();
+  const {userId} = useContext(UserContext)
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
@@ -24,6 +26,11 @@ export default function Recipe() {
         <div>
           <h4>Cooking time</h4>
           <p>{recipe.cookingTime} minutes</p>
+        </div>
+
+        <div>
+          <h4>Type</h4>
+          <p>{recipe.type}</p>
         </div>
 
         <div>
@@ -54,13 +61,14 @@ export default function Recipe() {
         </div>
       </div>
 
+      {recipe?._ownerId === userId && <Link to={`/recipes/${recipe._id}/edit`}><Button className="button">Edit</Button></Link>}
       <Link to="/recipes">
-        <button className="button-back">
+        <button className="button">
           Back to all competitor's recipes
         </button>
       </Link>
       <Link to="/recipes/new">
-        <button className="button-back">
+        <button className="button">
           Add new recipe
         </button>
       </Link>

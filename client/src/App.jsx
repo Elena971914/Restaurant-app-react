@@ -16,6 +16,7 @@ import Register from "./components/Authentication/register"
 import Logout from "./components/Authentication/Logout"
 import Profile from "./components/Profile/Profile"
 import { UserProvider } from "./contexts/UserContext"
+import EditRecipe from "./components/Daily/EditRecipe/editRecipe"
 
 function App() {
   return(
@@ -30,6 +31,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path='/recipes' element={<Daily />} />
         <Route path='/recipes/:id' element={<Recipe />} />
+        <Route path='/recipes/:id/edit' element={<EditRecipe />} />
         <Route path='/recipes/new' element={<AddNewRecipe />} />
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/booking' element={<Booking />} />

@@ -30,3 +30,14 @@ export const create = async(values) => {
     }
     catch{}
 }
+
+export const edit = async(values, id) => {
+    try{
+        const headers = getHeaders()
+        const response = await fetch(`${BASE_URL}/${id}`, {method: 'PUT', body: JSON.stringify(values), headers})
+        const result = await response.json()
+        console.log(result)
+        return result;
+        }
+        catch{}
+}
