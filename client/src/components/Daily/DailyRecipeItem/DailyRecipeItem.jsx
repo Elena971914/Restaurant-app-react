@@ -1,17 +1,25 @@
 import {Link} from 'react-router-dom'
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import * as likesServices from "../../../services/likesServices"
+import UserContext from '../../../contexts/UserContext';
 
 export default function DailyRecipeItem({
     _ownerId, imageURL, name, author, _id
 }) {
-    const [likes, setLikes] = useState(0)
+    const [likesObj, setLikesObj] = useState({})
+    const {userId} = useContext(UserContext)
 
-    const likeHandler = (e) => {
-        e.preventDefault()
-        setLikes(likes + 1)}
-    const dislikeHandler = (e) => {
-        e.preventDefault()
-        setLikes(likes - 1)}
+    useEffect(() => {
+        likesServices.getAll().then(result => result.find(obj => obj.recipeId === _id)).then(setLikesObj)
+    }, [])
+
+    const onLikeClick = () => {
+        if (!likesObj.likedBy.includes(userId)) {
+            likesObj._ownerId = userId
+            likesObj.likedBy.push(userId)
+            likesServices.like(likesObj._id, likesObj)
+        }
+    }
 
     return(
         <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -21,12 +29,10 @@ export default function DailyRecipeItem({
                 </div>
                 <h5 className="mb-0">{name}</h5>
                 <small>{author}</small>
-                <h5>Likes: {likes}</h5>
-                <h6>Current position: 1</h6>
+                <h5>Likes: {likesObj?.likedBy?.length}</h5>
                 <div className="d-flexjustify-content-center mt-3">
-                    <a className="btn btn-square btn-primary mx-1" href="" onClick={likeHandler}><i className="fa-solid fa-thumbs-up" style={{color: "#ffffff"}}></i></a>
+                    <Link className="btn btn-square btn-primary mx-1" onClick={onLikeClick}><i className="fa-solid fa-thumbs-up" style={{color: "#ffffff"}}></i></Link>
                     <Link className="btn btn-square btn-primary mx-1" to={`/recipes/${_id}`}><i className="fa-solid fa-info"></i></Link>
-                    <a className="btn btn-square btn-primary mx-1" href="" onClick={dislikeHandler}><i className="fa-solid fa-thumbs-down"></i></a>
                 </div>
             </div>
         </div>

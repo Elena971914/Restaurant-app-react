@@ -141,7 +141,7 @@ export default function AddNewRecipe() {
     objServer.author = fullName || email;
     
     const result = await compRecipesServices.edit(objServer, id);
-    navigate('/recipes')
+    navigate(`/recipes/${recipe._id}`)
   };
 
   return (
@@ -163,8 +163,8 @@ export default function AddNewRecipe() {
       <input
         className='wide'
         type="text"
-        name="image"
-        value={formValues.image}
+        name="imageURL"
+        value={formValues.imageURL}
         onChange={changeHandler}
       />
       <br />

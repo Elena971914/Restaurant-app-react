@@ -13,7 +13,6 @@ export default function Daily() {
     }, []
     )
 
-
     return(
         <div className="container-xxl pt-5 pb-3">
             <div className="container">

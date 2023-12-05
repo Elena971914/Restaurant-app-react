@@ -2,11 +2,12 @@ import { useContext, useState } from "react";
 import styles from "./AddNewRecipe.module.css";
 import UserContext from "../../../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
-import { create } from "../../../services/compRecipesServices";
+import * as compRecipesServices from "../../../services/compRecipesServices";
+import * as likesServices from "../../../services/likesServices";
 
 const INITIAL_VALUES = {
   name: "",
-  image: "",
+  imageURL: "",
   description: "",
   cookingTime: 20,
   type: "Breakfast",
@@ -20,7 +21,7 @@ const INITIAL_VALUES = {
 
 export default function AddNewRecipe() {
   const navigate = useNavigate()
-  const { isAuthenticated, email, fullName } = useContext(UserContext);
+  const { isAuthenticated, email, fullName, userId } = useContext(UserContext);
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
   const [ingredients, setIngredients] = useState(INITIAL_VALUES.ingredients);
   const [steps, setSteps] = useState(INITIAL_VALUES.steps);
@@ -113,7 +114,11 @@ export default function AddNewRecipe() {
     delete objServer.previewIngredients;
     objServer.author = fullName || email;
     
-    const result = await create(objServer);
+    const result = await compRecipesServices.create(objServer);
+
+    const data = {recipeId: result._id, _ownerId: userId, likedBy: []}
+    await likesServices.create(data)
+
     navigate('/recipes')
   };
 
@@ -136,8 +141,8 @@ export default function AddNewRecipe() {
       <input
         className={styles.wide}
         type="text"
-        name="image"
-        value={formValues.image}
+        name="imageURL"
+        value={formValues.imageURL}
         onChange={changeHandler}
       />
       <br />

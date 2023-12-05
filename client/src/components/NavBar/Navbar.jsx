@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import styles from "./Navbar.Modal.css"
 
 export default function Navbar() {
   const { isAuthenticated, email, fullName } = useContext(UserContext);
@@ -108,7 +109,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {isAuthenticated && <small>{fullName}</small>}
+        {isAuthenticated && <small className='uppercase'>{fullName}</small>}
       </nav>
     </div>
   );

@@ -31,7 +31,6 @@ export const register = async (email, password, fullName) => {
     const response = await fetch(`${baseUrl}/register`, { method: 'POST', body: JSON.stringify(data), headers })
 
     const result = await response.json()
-    console.log(result)
     return result;
 }
 

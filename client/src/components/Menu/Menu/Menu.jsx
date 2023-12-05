@@ -29,7 +29,7 @@ export default function Menu() {
                     <ul className="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         {menuNav.map((navItem) => < MenuNavItem menuNavItemData={navItem} key={navItem.id} showMenu={showMenuClickHandler}/>)}
                     </ul>
-                    <div className="tab-content">
+                    <div className="tab-content marginBottom">
                         <div id="tab-1" className="tab-pane fade show p-0 active">
                             <div className="row g-4">
                             {menu.map((item) => item.type === `${menuType}` && < MenuItem meal={item} key={item.id}/>)}
