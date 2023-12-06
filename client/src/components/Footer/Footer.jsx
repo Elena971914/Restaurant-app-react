@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import styles from "./Footer.module.css"
 
 export default function Footer() {
     return(
@@ -45,7 +46,7 @@ export default function Footer() {
                 <div className="copyright">
                     <div className="row">
                         <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <Link className="border-bottom" to="/">Sweet Restaurant</Link>, All Right Reserved. 
+                            &copy; <Link className={styles.bolded} to="/">Sweet Restaurant</Link>, All Right Reserved. 
 							
 							
 							Designed By <Link className="border-bottom" href="https://htmlcodex.com">HTML Codex</Link>

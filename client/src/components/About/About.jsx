@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import styles from './About.module.css'
 
 export default function About() {
     return(
@@ -29,7 +29,7 @@ export default function About() {
                         <div className="row g-4 mb-4">
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 className="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
+                                    <h1 className={styles.digit} data-toggle="counter-up">15</h1>
                                     <div className="ps-4">
                                         <p className="mb-0">Years of</p>
                                         <h6 className="text-uppercase mb-0">Experience</h6>
@@ -38,7 +38,7 @@ export default function About() {
                             </div>
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 className="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
+                                    <h1 className={styles.digit} data-toggle="counter-up">50</h1>
                                     <div className="ps-4">
                                         <p className="mb-0">Popular</p>
                                         <h6 className="text-uppercase mb-0">Master Chefs</h6>

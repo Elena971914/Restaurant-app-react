@@ -3,6 +3,7 @@ import MenuNavItem from "../MenuNavItem/MenuNavItem";
 import menuNavItems from "../menu-nav"
 import { useState, useEffect} from "react"
 import * as menuServices from "../../../services/menuServices"
+import styles from "./Menu.module.css"
 
 export default function Menu() {
     const [menu, setMenu] = useState([])
@@ -23,7 +24,7 @@ export default function Menu() {
             <div className="container">
                 <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 className="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 className="mb-5">Most Popular Items</h1>
+                    <h1 className={styles.marginBottom}>Most Popular Items</h1>
                 </div>
                 <div className="tab-className text-center wow fadeInUp" data-wow-delay="0.1s">
                     <ul className="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import reducer from "./testimonialsReducer";
-import * as testimonialServices from "../../services/testimonialServices";
-import UserContext from "../../contexts/UserContext";
-import styles from "./Testimonials.Module.css";
-import EditTestimonial from "./EditTestimonial/EditTestimonial"
+import * as testimonialServices from "../../../services/testimonialServices";
+import UserContext from "../../../contexts/UserContext";
+import styles from "./Testimonials.module.css";
+import EditTestimonial from "../EditTestimonial/EditTestimonial"
 
 export default function Testimonials() {
   const { isAuthenticated, fullName } = useContext(UserContext);
@@ -69,14 +69,14 @@ export default function Testimonials() {
   }
 
   return (
-    <div className="mainContainer">
+    <div className={styles.mainContainer}>
       <h1>TESTIMONIALS</h1>
 
       {showEdit && <EditTestimonial id={editTestId} onClose={onClose} />}
 
       {testimonials &&
         testimonials.map((testimonial) => (
-          <div className="commentField" key={testimonial._id}>
+          <div className={styles.commentField} key={testimonial._id}>
             <small key={Math.random()}>{testimonial.fullName}</small>
             <p key={Math.random()}>{testimonial.text}</p>
             {fullName === testimonial.fullName && (

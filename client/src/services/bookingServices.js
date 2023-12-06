@@ -17,7 +17,6 @@ export const getBooking = async (userId) => {
     try {
         const response = await fetch(`${BASE_URL}/${userId}`)
         const result = await response.json()
-        console.log(result)
         return result
     }
     catch (error) { console.log(error) }

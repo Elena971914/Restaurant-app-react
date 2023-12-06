@@ -1,0 +1,12 @@
+.digit {
+  color: #fea116;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  font-size: calc(1.425rem + 2.1vw);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.digit:hover {
+    color: #fbdaa9
+}

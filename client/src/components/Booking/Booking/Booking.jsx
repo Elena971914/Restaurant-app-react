@@ -1,13 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import UserContext from "../../../contexts/UserContext";
-import styles from "./Booking.Module.css";
-import * as bookingServices from "../../../services/bookingServices"
+import styles from "./Booking.module.css";
+import * as bookingServices from "../../../services/bookingServices";
 import SuccessfulBooking from "../SuccessfulBooking/SuccessfulBooking";
 
 export default function Booking() {
-  const navigate = useNavigate();
-  const { isAuthenticated, fullName, email} = useContext(UserContext);
+  const { isAuthenticated } = useContext(UserContext);
   const [showLoggedIn, setShowLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [bookingId, setBookingId] = useState("");
@@ -19,21 +18,29 @@ export default function Booking() {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const data = Object.fromEntries(new FormData(e.currentTarget))
-    const result = await bookingServices.create(data)
-    setBookingId(result._id)
-    setShowModal(true)
-    e.target.reset()
-  }
-
+    if (!isAuthenticated) {
+      setShowLoggedIn(true);
+    } else {
+      const data = Object.fromEntries(new FormData(e.currentTarget));
+      const result = await bookingServices.create(data);
+      setBookingId(result._id);
+      setShowModal(true);
+      e.target.reset();
+    }
+  };
 
   return (
     <>
-    {showModal && <SuccessfulBooking userId={bookingId} onClose={() => setShowModal(false)}/>}
+      {showModal && (
+        <SuccessfulBooking
+          userId={bookingId}
+          onClose={() => setShowModal(false)}
+        />
+      )}
       <div
-        className="container-xxl py-5 px-0 wow fadeInUp"
+        className="container-xxl px-0 wow fadeInUp"
         data-wow-delay="0.1s"
       >
         <div className="row g-0">
@@ -60,14 +67,14 @@ export default function Booking() {
                 <div className="row g-3">
                   {showLoggedIn && (
                     <>
-                      <p className="redParagraph">
+                      <p className={styles.redParagraph}>
                         You should login/register first to make a reservation.
                       </p>
                       <Link to="/login">
-                        <button className="btn btn-primary width">Login</button>
+                        <button className={styles.button}>Login</button>
                       </Link>
                       <Link to="/register">
-                        <button className="btn btn-primary width marginBottom">
+                        <button className={styles.button}>
                           Register
                         </button>
                       </Link>
@@ -99,7 +106,7 @@ export default function Booking() {
                       <label htmlFor="email">Your Email</label>
                     </div>
                   </div>
-                  
+
                   <div className="col-md-6">
                     <div
                       className="form-floating date input-group date datepickers"
@@ -116,13 +123,17 @@ export default function Booking() {
                         data-toggle="datetimepicker"
                         onFocus={onFocus}
                       />
-                      
+
                       <label htmlFor="datetime">Date & Time</label>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-floating">
-                      <select className="form-select" id="select1" name="tableFor">
+                      <select
+                        className="form-select"
+                        id="select1"
+                        name="tableFor"
+                      >
                         <option value="2">2 People</option>
                         <option value="3-5">3-5 People</option>
                         <option value="5+">5+ People</option>
@@ -143,7 +154,7 @@ export default function Booking() {
                       <label htmlFor="message">Special Request</label>
                     </div>
                   </div>
-                  
+
                   <div className="col-12">
                     <button
                       className="btn btn-primary w-100 py-3"

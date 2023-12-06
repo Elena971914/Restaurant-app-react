@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-
 import UserContext from "../../../contexts/UserContext";
+import styles from "./Register.module.css"
 
 export default function Register() {
   const { registerHandler } = useContext(UserContext);
@@ -24,7 +23,7 @@ export default function Register() {
   };
 
   return (
-    <form className="loginField" onSubmit={onSubmit}>
+    <form className={styles.registerField} onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
       <input
         type="text"
@@ -68,7 +67,7 @@ export default function Register() {
 
       <button
         type="submit"
-        className="btn btn-primary btn-secondary py-2 px-4 margin authButtons"
+        className={styles.buttonRegister}
       >
         Register
       </button>

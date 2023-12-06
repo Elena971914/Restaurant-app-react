@@ -23,7 +23,7 @@ export default function Daily() {
                 <div className="row g-4">
                     {compRecipes.map(recipe => <DailyRecipeItem key={recipe._id} {...recipe}/>)}
                 </div>
-                <Link to='/recipes/new'><button className="addButton">Add your recipe</button></Link>
+                <Link to='/recipes/new'><button className={styles.addButton}>Add your recipe</button></Link>
             </div>
         </div>
     )

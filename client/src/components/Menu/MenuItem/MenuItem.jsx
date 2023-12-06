@@ -1,3 +1,5 @@
+import styles from "./MenuItem.module.css"
+
 export default function MenuItem(props) {
     return(
         <div className="col-lg-6">
@@ -8,7 +10,7 @@ export default function MenuItem(props) {
                         <span>{props.meal.name}</span>
                         <span className="text-primary">{props.meal.price}</span>
                     </h5>
-                    <small className="fst-italic">{props.meal.recipe}</small>
+                    <small className={styles.italic}>{props.meal.recipe}</small>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import styles from "./Welcome.module.css"
 
 export default function Welcome () {
 return(<div className="container-xxl py-5 bg-dark hero-header mb-5">
@@ -10,7 +11,7 @@ return(<div className="container-xxl py-5 bg-dark hero-header mb-5">
             <Link to="/booking" className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</Link>
         </div>
         <div className="col-lg-6 text-center text-lg-end overflow-hidden">
-            <img className="img-fluid" src="img/hero.png" alt=""/>
+            <img className={styles.imgFluid} src="img/hero.png" alt=""/>
         </div>
     </div>
 </div>

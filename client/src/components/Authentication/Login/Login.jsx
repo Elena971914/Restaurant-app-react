@@ -19,15 +19,15 @@ export default function Login() {
     }
 
   return (
-      <form className="loginField" onSubmit={onSubmit}>
+      <form className={styles.loginField} onSubmit={onSubmit}>
       {!isValid && <p style={{color:"#FF0000"}}>You tried to enter with wrong credentials. These email and password are not registered yet.</p>}
         <label htmlFor="email">Email</label>
         <input type="text" name="email" value={values.email} onChange={onChange} placeholder="Email"></input>
         <label htmlFor="password">Password</label>
         <input type="password" name="password" value={values.password} onChange={onChange} placeholder="Password"></input>
 
-        <button type="submit" className="btn btn-primary btn-secondary py-2 px-4 margin authButtons">Login</button>
-        <Link to='/register'><button type="button" className="btn btn-primary btn-secondary py-2 px-4 margin authButtons">Register</button></Link>
+        <button type="submit" className={styles.buttonLogin}>Login</button>
+        <Link to='/register'><button type="button" className={styles.buttonLogin}>Register</button></Link>
       </form>
   );
 }
