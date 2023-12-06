@@ -9,6 +9,7 @@ export default function Booking() {
   const { isAuthenticated } = useContext(UserContext);
   const [showLoggedIn, setShowLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showInvalid, setShowInvalid] = useState(false);
   const [bookingId, setBookingId] = useState("");
 
   const onFocus = () => {
@@ -24,10 +25,14 @@ export default function Booking() {
       setShowLoggedIn(true);
     } else {
       const data = Object.fromEntries(new FormData(e.currentTarget));
-      const result = await bookingServices.create(data);
-      setBookingId(result._id);
-      setShowModal(true);
-      e.target.reset();
+      if (!data.name || !data.email || !data.datetime || !data.tableFor) {
+        setShowInvalid(true);
+      } else {
+        const result = await bookingServices.create(data);
+        setBookingId(result._id);
+        setShowModal(true);
+        e.target.reset();
+      }
     }
   };
 
@@ -39,10 +44,7 @@ export default function Booking() {
           onClose={() => setShowModal(false)}
         />
       )}
-      <div
-        className="container-xxl px-0 wow fadeInUp"
-        data-wow-delay="0.1s"
-      >
+      <div className="container-xxl px-0 wow fadeInUp" data-wow-delay="0.1s">
         <div className="row g-0">
           <div className="col-md-6">
             <div className="video">
@@ -74,11 +76,18 @@ export default function Booking() {
                         <button className={styles.button}>Login</button>
                       </Link>
                       <Link to="/register">
-                        <button className={styles.button}>
-                          Register
-                        </button>
+                        <button className={styles.button}>Register</button>
                       </Link>
                     </>
+                  )}
+                  {showInvalid && (
+                    <p>
+                      <p className={styles.redParagraph}>
+                        You should fill your name, email, the date and time you
+                        need a table and for how many people you want it to be.
+                        Thank You!
+                      </p>
+                    </p>
                   )}
                   <div className="col-md-6">
                     <div className="form-floating">
