@@ -34,7 +34,7 @@ export default function Recipe() {
 
   return (
     <div className={styles.mainContainer}>
-      <h1>{recipe.name}</h1>
+      <h1>{recipe.title}</h1>
       {showDeleteModal && <DeleteModal handleClose={() => setShowDeleteModal(false)} handleDelete={deleteRecipe}/>}
       <h3>Posted by: {recipe.author}</h3>
       <img className={styles.recipeImg} src={recipe.imageURL} />

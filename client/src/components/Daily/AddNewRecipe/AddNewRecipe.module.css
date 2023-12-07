@@ -31,9 +31,10 @@
 .gridContainer {
     width:95%;
     display: grid;
-    grid-template-columns: 15% 65% 15%;
-    gap: 20px;
-    padding-left: 0px
+    grid-template-columns: 70% 25%;
+    gap: 30px;
+    padding-left: 0px;
+    margin: 10px 0
 }
 
 .form button {
@@ -49,16 +50,8 @@
     transition: 0.2s linear;
 }
 
-.steps { 
-    display:grid;
-    grid-template-columns: 70% 25%;
-    gap:30px;
-    padding-left: 0;
-}
-
 .form button.addBtn {
-margin: 10px;
-padding: 10px 30px
+padding: 10px 20px
 }
 
 .form button.addBtn:hover {
@@ -69,8 +62,7 @@ padding: 10px 30px
 }
 
 .form button.resetBtn{
-    margin: 10px;
-padding: 10px 30px
+padding: 10px
 }
 
 .form button.resetBtn:hover {
@@ -80,8 +72,24 @@ padding: 10px 30px
     background-color: white;
 }
 
+.form button.submit {
+  margin-top: 30px;
+  background-color: #FEA116;
+  color: white;
+  padding: 10px
+}
+
+.form button.submit:hover {
+  background-color: #f7c377;
+  border-color:#f7c377
+}
+
 .redPar {
   color:red
+}
+
+.space {
+  margin: 30px auto;
 }
 
 

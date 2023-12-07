@@ -1,27 +1,27 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./AddNewRecipe.module.css";
 import UserContext from "../../../contexts/UserContext";
-import { Link, useNavigate } from "react-router-dom";
+import Auth from "./Auth/Auth";
 import * as compRecipesServices from "../../../services/compRecipesServices";
 import * as likesServices from "../../../services/likesServices";
 
 const INITIAL_VALUES = {
-  name: "",
+  title: "",
   imageURL: "",
   description: "",
   cookingTime: 20,
-  type: "Breakfast",
+  type: "Lunch",
   servings: 2,
   cuisine: "balkan",
-  ingredients: [{ ingredient: "", quantity: "" }],
-  steps: [{ step: "" }],
+  ingredients: [""],
+  steps: [""],
 };
 
 export default function AddNewRecipe() {
   const navigate = useNavigate();
   const { isAuthenticated, email, fullName, userId } = useContext(UserContext);
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
-  const [ingredients, setIngredients] = useState(INITIAL_VALUES.ingredients);
   const [steps, setSteps] = useState(INITIAL_VALUES.steps);
   const [showTitleError, setShowTitleError] = useState(false);
   const [showCookingTimeError, setShowCookingTimeError] = useState(false);
@@ -29,137 +29,107 @@ export default function AddNewRecipe() {
   const [showIngredientsError, setShowIngredientsError] = useState(false);
   const [showStepsError, setShowStepsError] = useState(false);
 
-  const changeHandler = (e) => {
-    if (e.target.type === "number") {
-      e.target.value = Number(e.target.value);
+  const changeHandler = (e, i) => {
+    const { name, value, type } = e.target;
+    if (type === "number") {
+      value = Number(value);
     }
-    setFormValues((state) => ({ ...state, [e.target.name]: e.target.value }));
+    if (name === "ingredients" || name === "steps") {
+      const updated = [...formValues[name]];
+      updated[i] = value;
+      setFormValues((prevState) => ({
+        ...prevState,
+        [name]: updated,
+      }));
+      return;
+    }
+    setFormValues((state) => ({ ...state, [name]: value }));
   };
 
-  // INGREDIENTS
-  const addIngredientButtonHandler = () => {
-    setIngredients((ingredients) => [
-      ...ingredients,
-      { ingredient: "", quantity: "" },
-    ]);
-  };
-
-  const changeIngredientsHandler = (e, i) => {
-    const { name, value } = e.target;
-    const updatedIngredients = [...ingredients];
-    updatedIngredients[i][name] = value;
-    setIngredients(updatedIngredients);
-
-    setFormValues((prevState) => ({
-      ...prevState,
-      ingredients: updatedIngredients.map((ingredient) => ({ ...ingredient })),
+  const addButtonHandler = (name) => {
+    setFormValues((values) => ({
+      ...values,
+      [name]: [...values[name], ""],
     }));
   };
 
-  const deleteIngredientHandler = (i) => {
-    const deleteVal = [...ingredients];
-    deleteVal.splice(i, 1);
-    setIngredients(deleteVal);
-  };
-
-  const resetIngredientsButtonHandler = () => {
-    setIngredients(INITIAL_VALUES.ingredients);
-  };
-
-  //STEPS
-  const addStepButtonHandler = () => {
-    setSteps((steps) => [...steps, { step: "" }]);
-  };
-
-  const changeStepsHandler = (e, i) => {
-    const { value } = e.target;
-    const updatedSteps = [...steps];
-    updatedSteps[i].step = value;
-    setSteps(updatedSteps);
+  const deleteHandler = (i, name) => {
+    const allValues = [...formValues[name]];
+    allValues.splice(i, 1);
     setFormValues((prevState) => ({
       ...prevState,
-      steps: updatedSteps.map((step) => ({ step: step.step })),
+      [name]: allValues,
     }));
   };
 
-  const deleteStepHandler = (i) => {
-    const deleteVal = [...steps];
-    deleteVal.splice(i, 1);
-    setSteps(deleteVal);
+  const resetButtonHandler = (name) => {
+    setFormValues((prevState) => ({ ...prevState, [name]: [""] }));
   };
 
-  const resetStepsButtonHandler = () => {
-    setSteps(INITIAL_VALUES.steps);
+  const validate = (e) => {
+    switch (e.target.name) {
+      case "title": {
+        if (formValues.title.length < 20) {
+          setShowTitleError(true);
+        } else {
+          setShowTitleError(false);
+        }
+      }
+      case "cookingTime": {
+        if (formValues.cookingTime < 1) {
+          setShowCookingTimeError(true);
+        } else {
+          setShowCookingTimeError(false);
+        }
+      }
+      case "servings": {
+        if (formValues.servings < 1) {
+          setShowServingsError(true);
+        } else {
+          setShowServingsError(false);
+        }
+      }
+      case "ingredients": {
+        const ingredients = formValues.ingredients.filter(
+          (ingredient) => ingredient !== ""
+        );
+        if (ingredients.length === 0) {
+          setShowIngredientsError(true);
+          return;
+        } else {
+          setShowIngredientsError(false);
+        }
+      }
+      case "steps": {
+        const steps = formValues.steps.filter((step) => step !== "");
+        if (steps.length === 0) {
+          setShowStepsError(true);
+          return;
+        } else {
+          setShowStepsError(false);
+        }
+      }
+    }
   };
 
-  //SUBMIT
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-  
-      const objServer = { ...formValues };
-      objServer.ingredients = formValues.ingredients
-        .map((ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`)
-        .filter((ingredient) => ingredient !== " ");
-      objServer.steps = formValues.steps
-        .map((step) => `${step.step}`)
-        .filter((step) => step !== "");
-      objServer.author = fullName || email;
-  
-      onBlurTitle();
-      onBlurCookingTime();
-      onBlurServings();
-  
-      if (objServer.ingredients.length === 0) {
-        setShowIngredientsError(true);
-        return;
-      } else {
-        setShowIngredientsError(false);
-      }
-      if (objServer.steps.length === 0) {
-        setShowStepsError(true);
-        return;
-      } else {
-        setShowStepsError(false);
-      }
-  
-      const result = await compRecipesServices.create(objServer);
-  
+      setFormValues((prevState) => ({
+        ...prevState,
+        author: fullName || email,
+      }));
+      const result = await compRecipesServices.create(formValues);
+
       const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
       await likesServices.create(data);
-  
-      setIngredients(INITIAL_VALUES.ingredients);
-      setSteps(INITIAL_VALUES.steps);
+
       setFormValues(INITIAL_VALUES);
       navigate("/recipes");
+
     } catch (error) {
-      console.error('Error in onSubmit:', error);
+      console.error("Error in submitting:", error);
       throw error;
-    }
-  };
-  
-
-  const onBlurTitle = () => {
-    if (formValues.name.length < 20) {
-      setShowTitleError(true);
-    } else {
-      setShowTitleError(false);
-    }
-  };
-
-  const onBlurCookingTime = () => {
-    if (formValues.cookingTime < 1) {
-      setShowCookingTimeError(true);
-    } else {
-      setShowCookingTimeError(false);
-    }
-  };
-
-  const onBlurServings = (e) => {
-    if (formValues.servings < 1) {
-      setShowServingsError(true);
-    } else {
-      setShowServingsError(false);
     }
   };
 
@@ -178,10 +148,10 @@ export default function AddNewRecipe() {
             <input
               className={styles.wide}
               type="text"
-              name="name"
+              name="title"
               value={formValues.name}
               onChange={changeHandler}
-              onBlur={onBlurTitle}
+              onBlur={validate}
             />
             <br />
             <label htmlFor="name">Image URL</label>
@@ -225,7 +195,7 @@ export default function AddNewRecipe() {
                 name="cookingTime"
                 value={formValues.cookingTime}
                 onChange={changeHandler}
-                onBlur={onBlurCookingTime}
+                onBlur={validate}
               />
 
               <label htmlFor="cookingTime">Servings</label>
@@ -234,7 +204,7 @@ export default function AddNewRecipe() {
                 name="servings"
                 value={formValues.servings}
                 onChange={changeHandler}
-                onBlur={onBlurServings}
+                onBlur={validate}
               />
 
               <label htmlFor="cuisine">Cuisine</label>
@@ -250,53 +220,50 @@ export default function AddNewRecipe() {
 
             {/* INGREDIENTS  */}
             <div className={styles.containerOne}>
-              <h4>Ingredients list</h4>
+              <h4 className={styles.space}>Ingredients list</h4>
               {showIngredientsError && (
                 <p className={styles.redPar}>
                   You cannot send a recipe without ingredients!
                 </p>
               )}
-              <div className={styles.gridContainer}>
-                <label htmlFor="quantity">Quantity</label>
-                <label htmlFor="ingredient">Ingredient</label>
+              <ul>
+                {formValues.ingredients.map((currentIngredient, index) => (
+                  <li key={index} className={styles.gridContainer}>
+                    <input
+                      type="text"
+                      name="ingredients"
+                      value={currentIngredient}
+                      onChange={(e) => changeHandler(e, index)}
+                      onBlur={validate}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => deleteHandler(index, "ingredients")}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div
+                className={styles.gridContainer}
+                style={{ paddingLeft: "2rem" }}
+              >
+                <button
+                  type="button"
+                  className={styles.addBtn}
+                  onClick={() => addButtonHandler("ingredients")}
+                >
+                  Add ingredient
+                </button>
+                <button
+                  className={styles.resetBtn}
+                  type="button"
+                  onClick={() => resetButtonHandler("ingredients")}
+                >
+                  Reset ingredients
+                </button>
               </div>
-              {ingredients.map((currentIngredient, index) => (
-                <ul key={index} className={styles.gridContainer}>
-                  <input
-                    type="text"
-                    name="quantity"
-                    value={currentIngredient.quantity}
-                    onChange={(e) => changeIngredientsHandler(e, index)}
-                  ></input>
-
-                  <input
-                    type="text"
-                    name="ingredient"
-                    value={currentIngredient.ingredient}
-                    onChange={(e) => changeIngredientsHandler(e, index)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => deleteIngredientHandler(index)}
-                  >
-                    Delete
-                  </button>
-                </ul>
-              ))}
-              <button
-                type="button"
-                className={styles.addBtn}
-                onClick={addIngredientButtonHandler}
-              >
-                Add ingredient
-              </button>
-              <button
-                className={styles.resetBtn}
-                type="button"
-                onClick={resetIngredientsButtonHandler}
-              >
-                Reset ingredients
-              </button>
             </div>
 
             {/* STEPS */}
@@ -307,73 +274,64 @@ export default function AddNewRecipe() {
                   You cannot send a recipe without preparation steps!
                 </p>
               )}
-              {steps.map((currentStep, index) => (
-                <ul key={index} className={styles.steps}>
-                  <input
-                    type="text"
-                    name="step"
-                    value={currentStep.step}
-                    onChange={(e) => changeStepsHandler(e, index)}
-                  ></input>
-
-                  <button
-                    type="button"
-                    onClick={() => deleteStepHandler(index)}
-                  >
-                    Delete
-                  </button>
-                </ul>
-              ))}
-              <button
-                className={styles.addBtn}
-                type="button"
-                onClick={addStepButtonHandler}
+              <ul>
+                {formValues.steps.map((currentStep, index) => (
+                  <li key={index} className={styles.gridContainer}>
+                    <input
+                      type="text"
+                      name="steps"
+                      value={currentStep}
+                      onChange={(e) => changeHandler(e, index)}
+                      onBlur={validate}
+                    ></input>
+                    <button
+                      type="button"
+                      onClick={() => deleteHandler(index, "steps")}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div
+                className={styles.gridContainer}
+                style={{ paddingLeft: "2rem" }}
               >
-                Add a step
-              </button>
-              <button
-                className={styles.resetBtn}
-                type="button"
-                onClick={resetStepsButtonHandler}
-              >
-                Reset steps
-              </button>
+                <button
+                  className={styles.addBtn}
+                  type="button"
+                  onClick={() => addButtonHandler("steps")}
+                >
+                  Add a step
+                </button>
+                <button
+                  className={styles.resetBtn}
+                  type="button"
+                  onClick={() => resetButtonHandler("steps")}
+                >
+                  Reset steps
+                </button>
+              </div>
             </div>
 
-            <button type="submit" style={{ marginTop: "30px" }}>
+            <button
+              type="submit"
+              className={styles.submit}
+              disabled={
+                showTitleError ||
+                showCookingTimeError ||
+                showServingsError ||
+                showStepsError ||
+                showIngredientsError
+              }
+            >
               Submit
             </button>
           </form>
         </div>
       )}
 
-      {!isAuthenticated && (
-        <div
-          style={{ margin: "30px auto", width: "50vw", textAlign: "center" }}
-        >
-          <h6>Please, login or register first.</h6>
-          <div>
-            <Link to="/login">
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "45%", marginRight: "30px" }}
-              >
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "45%" }}
-              >
-                Register
-              </button>
-            </Link>
-          </div>
-        </div>
-      )}
+      {!isAuthenticated && <Auth />}
     </>
   );
 }
