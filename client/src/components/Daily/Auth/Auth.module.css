@@ -1,0 +1,11 @@
+.container {
+  padding: 30px;
+  margin: 40px auto;
+  width: 50vw;
+  text-align: center;
+  height: 30vh
+}
+
+.marginBottom {
+    margin-bottom: 20px;
+}

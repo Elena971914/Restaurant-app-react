@@ -24,7 +24,6 @@ export const UserProvider = ({ children }) => {
         }
     } catch (error) {
         console.log('Error during login:', error);
-        // Handle other errors if needed
     }
 };
 

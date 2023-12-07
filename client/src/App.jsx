@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import { UserProvider } from "./contexts/UserContext"
 import About from './components/About/About'
 import Footer from './components/Footer/Footer'
 import Menu from './components/Menu/Menu/Menu'
@@ -14,8 +15,7 @@ import NotFound from "./components/NotFound/NotFound"
 import Login from "./components/Authentication/Login/Login"
 import Register from "./components/Authentication/Register/Register"
 import Logout from "./components/Authentication/Logout/Logout"
-import { UserProvider } from "./contexts/UserContext"
-import EditRecipe from "./components/Daily/EditRecipe/editRecipe"
+import EditRecipe from "./components/Daily/EditRecipe/EditRecipe"
 
 function App() {
   return(

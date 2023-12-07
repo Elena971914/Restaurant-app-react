@@ -6,7 +6,7 @@ import UserContext from '../../../contexts/UserContext';
 import styles from "./DailyRecipeItem.module.css"
 
 export default function DailyRecipeItem({
-    imageURL, name, author, _id
+    imageURL, title, author, _id
 }) {
     const [likesObj, setLikesObj] = useState({})
     const {userId} = useContext(UserContext)
@@ -36,7 +36,7 @@ export default function DailyRecipeItem({
                 <div className="rounded-circle overflow-hidden m-4">
                     <img className="img-fluid" src={imageURL} alt=""/>
                 </div>
-                <h5 className={styles.padding}>{name}</h5>
+                <h5 className={styles.padding}>{title}</h5>
                 <small>{author}</small>
                 <h5>Likes: {likesObj?.likedBy?.length}</h5>
                 <div className="d-flexjustify-content-center mt-3">

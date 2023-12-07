@@ -1480,7 +1480,7 @@
                 "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea9",
                 "author": "Elena Petkova",
-                "name": "Crock Pot Roast with wild onion",
+                "title": "Crock Pot Roast with wild onion",
                 "description": "Easy homeland meal for special occasions.",
                 "ingredients": [
                     "1 beef roast", "1 package brown gravy mix", "1 package dried Italian salad dressing mix",
@@ -1503,7 +1503,7 @@
                 "_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea9",
                 "author": "Bisera Atanasova",
-                "name": "Big Night Pizza with ham, cheese and herbs",
+                "title": "Big Night Pizza with ham, cheese and herbs",
                 "description": "This meal is everybody's favorite",
                 "ingredients": [
                     "5 teaspoons yeast",
@@ -1534,7 +1534,7 @@
                 "_id": "985d9eab-ad3e-4622-a5c8-116261fb1fd2",
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea9",
                 "author": "Stefan Rusinov",
-                "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
+                "title": "Cranberry and Apple Stuffed Acorn Squash Recipe",
                 "description": "A special recipe for special people",
                 "ingredients": [
                     "2 acorn squash",
@@ -1564,7 +1564,7 @@
                 "_id": "985d9eab-ad4e-4622-a5c8-116261fb1fd2",
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea9",
                 "author": "Alexander Alexov",
-                "name": "Mic's Yorkshire Puds with cranberries",
+                "title": "Mic's Yorkshire Puds with cranberries",
                 "description": "Should be on the table of every perfect breakfast",
                 "ingredients": [
                     "200g plain flour",

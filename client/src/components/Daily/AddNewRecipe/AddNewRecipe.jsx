@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddNewRecipe.module.css";
 import UserContext from "../../../contexts/UserContext";
-import Auth from "./Auth/Auth";
+import Auth from "../Auth/Auth";
 import * as compRecipesServices from "../../../services/compRecipesServices";
 import * as likesServices from "../../../services/likesServices";
 
@@ -16,23 +16,28 @@ const INITIAL_VALUES = {
   cuisine: "balkan",
   ingredients: [""],
   steps: [""],
+  author: ""
 };
 
 export default function AddNewRecipe() {
   const navigate = useNavigate();
   const { isAuthenticated, email, fullName, userId } = useContext(UserContext);
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
-  const [steps, setSteps] = useState(INITIAL_VALUES.steps);
   const [showTitleError, setShowTitleError] = useState(false);
   const [showCookingTimeError, setShowCookingTimeError] = useState(false);
   const [showServingsError, setShowServingsError] = useState(false);
   const [showIngredientsError, setShowIngredientsError] = useState(false);
   const [showStepsError, setShowStepsError] = useState(false);
 
+  useEffect(() => {setFormValues((prevState) => ({
+    ...prevState,
+    author: fullName || email,
+  }));}, [])
+
   const changeHandler = (e, i) => {
     const { name, value, type } = e.target;
     if (type === "number") {
-      value = Number(value);
+      e.target.value = Number(value);
     }
     if (name === "ingredients" || name === "steps") {
       const updated = [...formValues[name]];
@@ -45,14 +50,12 @@ export default function AddNewRecipe() {
     }
     setFormValues((state) => ({ ...state, [name]: value }));
   };
-
   const addButtonHandler = (name) => {
     setFormValues((values) => ({
       ...values,
       [name]: [...values[name], ""],
     }));
   };
-
   const deleteHandler = (i, name) => {
     const allValues = [...formValues[name]];
     allValues.splice(i, 1);
@@ -61,11 +64,9 @@ export default function AddNewRecipe() {
       [name]: allValues,
     }));
   };
-
   const resetButtonHandler = (name) => {
     setFormValues((prevState) => ({ ...prevState, [name]: [""] }));
   };
-
   const validate = (e) => {
     switch (e.target.name) {
       case "title": {
@@ -73,21 +74,21 @@ export default function AddNewRecipe() {
           setShowTitleError(true);
         } else {
           setShowTitleError(false);
-        }
+        } return
       }
       case "cookingTime": {
         if (formValues.cookingTime < 1) {
           setShowCookingTimeError(true);
         } else {
           setShowCookingTimeError(false);
-        }
+        } return
       }
       case "servings": {
         if (formValues.servings < 1) {
           setShowServingsError(true);
         } else {
           setShowServingsError(false);
-        }
+        } return 
       }
       case "ingredients": {
         const ingredients = formValues.ingredients.filter(
@@ -95,38 +96,29 @@ export default function AddNewRecipe() {
         );
         if (ingredients.length === 0) {
           setShowIngredientsError(true);
-          return;
         } else {
           setShowIngredientsError(false);
-        }
+        } return
       }
       case "steps": {
         const steps = formValues.steps.filter((step) => step !== "");
         if (steps.length === 0) {
           setShowStepsError(true);
-          return;
         } else {
           setShowStepsError(false);
-        }
+        } return
       }
     }
   };
-
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-      setFormValues((prevState) => ({
-        ...prevState,
-        author: fullName || email,
-      }));
       const result = await compRecipesServices.create(formValues);
-
       const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
       await likesServices.create(data);
-
       setFormValues(INITIAL_VALUES);
       navigate("/recipes");
-
+      console.log(formValues)
     } catch (error) {
       console.error("Error in submitting:", error);
       throw error;

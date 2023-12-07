@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
+import styles from "./Auth.module.css"
 
 export default function Auth() {
     return(
         <div
-          style={{ margin: "30px auto", width: "50vw", textAlign: "center" }}
+          className={styles.container}
         >
-          <h6>Please, login or register first.</h6>
+          <h6 className={styles.marginBottom}>Please, login or register first.</h6>
           <div>
             <Link to="/login">
               <button
