@@ -97,29 +97,39 @@ export default function AddNewRecipe() {
     e.preventDefault();
 
     const objServer = { ...formValues };
-    objServer.ingredients = formValues.ingredients.map(
-      (ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`
-    ).filter(ingredient => ingredient !== ' ');
-    objServer.steps = formValues.steps.map((step) => `${step.step}`).filter((step) => step !== '');
+    objServer.ingredients = formValues.ingredients
+      .map((ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`)
+      .filter((ingredient) => ingredient !== " ");
+    objServer.steps = formValues.steps
+      .map((step) => `${step.step}`)
+      .filter((step) => step !== "");
     objServer.author = fullName || email;
 
+    onBlurTitle();
+    onBlurCookingTime();
+    onBlurServings();
     if (objServer.ingredients.length === 0) {
       setShowIngredientsError(true);
       return;
-    } else if (objServer.steps.length === 0) {
+    } else {
+      setShowIngredientsError(false);
+    }
+    if (objServer.steps.length === 0) {
       setShowStepsError(true);
       return;
     } else {
-      const result = await compRecipesServices.create(objServer);
-
-      const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
-      await likesServices.create(data);
-
-      setIngredients(INITIAL_VALUES.ingredients)
-      setSteps(INITIAL_VALUES.steps)
-      setFormValues(INITIAL_VALUES)
-      navigate("/recipes");
+      setShowStepsError(false);
     }
+
+    const result = await compRecipesServices.create(objServer);
+
+    const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
+    await likesServices.create(data);
+
+    setIngredients(INITIAL_VALUES.ingredients);
+    setSteps(INITIAL_VALUES.steps);
+    setFormValues(INITIAL_VALUES);
+    navigate("/recipes");
   };
 
   const onBlurTitle = () => {
@@ -138,7 +148,7 @@ export default function AddNewRecipe() {
     }
   };
 
-  const onBlurServings = () => {
+  const onBlurServings = (e) => {
     if (formValues.servings < 1) {
       setShowServingsError(true);
     } else {
