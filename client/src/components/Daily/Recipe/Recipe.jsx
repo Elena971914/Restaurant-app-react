@@ -1,28 +1,40 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import * as compRecipesService from "../../../services/compRecipesServices";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import * as compRecipesService from "../../../services/compRecipesServices";
 import styles from "./Recipe.Module.css";
 import UserContext from "../../../contexts/UserContext";
-import EditRecipe from "../EditRecipe/editRecipe";
-import { Button } from "react-bootstrap";
+import DeleteModal from "./DeleteModal/DeleteModal";
 
 export default function Recipe() {
+  const navigate = useNavigate()
   const { id } = useParams();
   const {userId} = useContext(UserContext)
   const [recipe, setRecipe] = useState({});
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   useEffect(() => {
     compRecipesService.getOne(id).then(setRecipe);
   }, []);
 
-  return (
-    <div className="main-container">
-      <h1>{recipe.name}</h1>
-      <h3>Posted by: {recipe.author}</h3>
-      <img className="recipeImg" src={recipe.imageURL} />
+  const deleteClickHandler = () => {
+    setShowDeleteModal(true)
+  }
 
-      <div className="flex-container" style={{justifyContent:"space-around"}}>
+  const deleteRecipe = async() => {
+    compRecipesService.remove(id)
+    navigate('/recipes')
+  }
+  
+  return (
+    <div className={styles.mainContainer}>
+      <h1>{recipe.name}</h1>
+      {showDeleteModal && <DeleteModal handleClose={() => setShowDeleteModal(false)} handleDelete={deleteRecipe}/>}
+      <h3>Posted by: {recipe.author}</h3>
+      <img className={styles.recipeImg} src={recipe.imageURL} />
+
+      <div className={styles.flexContainer} style={{justifyContent:"space-around"}}>
         <div>
           <h4>Cooking time</h4>
           <p>{recipe.cookingTime} minutes</p>
@@ -44,15 +56,15 @@ export default function Recipe() {
         </div>
       </div>
 
-      <div className="flex-container">
-        <div className="recipe-container">
+      <div className={styles.flexContainer}>
+        <div className={styles.recipeContainer}>
           <h4>How to make?</h4>
           <ul>
             {recipe.steps &&
               recipe.steps.map((step) => <li key={step}>{step}</li>)}
           </ul>
         </div>
-        <div className="ingredients-container">
+        <div className={styles.ingredientsContainer}>
           <h4>Ingredients</h4>
           <ul>
             {recipe.ingredients &&
@@ -61,14 +73,15 @@ export default function Recipe() {
         </div>
       </div>
 
-      {recipe?._ownerId === userId && <Link to={`/recipes/${recipe._id}/edit`}><Button className="button">Edit</Button></Link>}
+      {recipe?._ownerId === userId && <Link to={`/recipes/${recipe._id}/edit`}><Button className={styles.button}>Edit</Button></Link>}
+      {recipe?._ownerId === userId && <Button className={styles.button} onClick={deleteClickHandler}>Delete</Button>}
       <Link to="/recipes">
-        <button className="button">
+        <button className={styles.button}>
           Back to all competitor's recipes
         </button>
       </Link>
       <Link to="/recipes/new">
-        <button className="button">
+        <button className={styles.button}>
           Add new recipe
         </button>
       </Link>

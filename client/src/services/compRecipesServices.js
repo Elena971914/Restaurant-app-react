@@ -41,3 +41,8 @@ export const edit = async(values, id) => {
         }
         catch{}
 }
+
+export const remove = async (id) => {
+    const headers = getHeaders()
+    await fetch(`${BASE_URL}/${id}`, { method: 'DELETE', headers })
+}

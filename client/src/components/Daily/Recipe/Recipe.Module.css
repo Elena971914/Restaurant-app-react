@@ -16,23 +16,23 @@
     width: 100%;
 }
 
-.main-container {
-    margin-top: 30px;
+.mainContainer {
+    margin: 80px auto;
     text-align: center;
 }
 
-.flex-container {
+.flexContainer {
     padding:20px 50px;
     margin-top: 30px;
     display: inline-flex;
     width: 90vw
 }
 
-.flex-container h4 {
+.flexContainer h4 {
     text-align: center
 }
 
-.recipe-container {
+.recipeContainer {
     text-align: left;
     width: 75%;
     display: inline-block;
