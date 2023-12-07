@@ -94,43 +94,50 @@ export default function AddNewRecipe() {
 
   //SUBMIT
   const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const objServer = { ...formValues };
-    objServer.ingredients = formValues.ingredients
-      .map((ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`)
-      .filter((ingredient) => ingredient !== " ");
-    objServer.steps = formValues.steps
-      .map((step) => `${step.step}`)
-      .filter((step) => step !== "");
-    objServer.author = fullName || email;
-
-    onBlurTitle();
-    onBlurCookingTime();
-    onBlurServings();
-    if (objServer.ingredients.length === 0) {
-      setShowIngredientsError(true);
-      return;
-    } else {
-      setShowIngredientsError(false);
+    try {
+      e.preventDefault();
+  
+      const objServer = { ...formValues };
+      objServer.ingredients = formValues.ingredients
+        .map((ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`)
+        .filter((ingredient) => ingredient !== " ");
+      objServer.steps = formValues.steps
+        .map((step) => `${step.step}`)
+        .filter((step) => step !== "");
+      objServer.author = fullName || email;
+  
+      onBlurTitle();
+      onBlurCookingTime();
+      onBlurServings();
+  
+      if (objServer.ingredients.length === 0) {
+        setShowIngredientsError(true);
+        return;
+      } else {
+        setShowIngredientsError(false);
+      }
+      if (objServer.steps.length === 0) {
+        setShowStepsError(true);
+        return;
+      } else {
+        setShowStepsError(false);
+      }
+  
+      const result = await compRecipesServices.create(objServer);
+  
+      const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
+      await likesServices.create(data);
+  
+      setIngredients(INITIAL_VALUES.ingredients);
+      setSteps(INITIAL_VALUES.steps);
+      setFormValues(INITIAL_VALUES);
+      navigate("/recipes");
+    } catch (error) {
+      console.error('Error in onSubmit:', error);
+      throw error;
     }
-    if (objServer.steps.length === 0) {
-      setShowStepsError(true);
-      return;
-    } else {
-      setShowStepsError(false);
-    }
-
-    const result = await compRecipesServices.create(objServer);
-
-    const data = { recipeId: result._id, _ownerId: userId, likedBy: [] };
-    await likesServices.create(data);
-
-    setIngredients(INITIAL_VALUES.ingredients);
-    setSteps(INITIAL_VALUES.steps);
-    setFormValues(INITIAL_VALUES);
-    navigate("/recipes");
   };
+  
 
   const onBlurTitle = () => {
     if (formValues.name.length < 20) {

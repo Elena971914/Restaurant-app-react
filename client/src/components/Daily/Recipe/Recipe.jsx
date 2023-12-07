@@ -22,11 +22,16 @@ export default function Recipe() {
     setShowDeleteModal(true)
   }
 
-  const deleteRecipe = async() => {
-    compRecipesService.remove(id)
-    navigate('/recipes')
-  }
+  const deleteRecipe = async () => {
+    try {
+      await compRecipesService.remove(id);
+      navigate('/recipes');
+    } catch (error) {
+      console.log('Error in deleteRecipe:', error);
+    }
+  };
   
+
   return (
     <div className={styles.mainContainer}>
       <h1>{recipe.name}</h1>

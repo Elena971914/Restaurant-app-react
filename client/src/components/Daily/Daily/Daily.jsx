@@ -1,5 +1,5 @@
 import DailyRecipeItem from "../DailyRecipeItem/DailyRecipeItem";
-import * as compRecipesService from "../../../services/compRecipesServices"
+import * as compRecipesServices from "../../../services/compRecipesServices"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Daily.Module.css"
@@ -8,10 +8,13 @@ export default function Daily() {
     const [compRecipes, setCompRecipes] = useState([])
     
     useEffect(() => {
-        compRecipesService.getAll()
-        .then(result=> setCompRecipes(result))
-    }, []
-    )
+        compRecipesServices.getAll()
+            .then(result => setCompRecipes(result))
+            .catch(error => {
+                console.error('Error fetching competitor recipes:', error);
+            });
+    }, []);
+    
 
     return(
         <div className="container-xxl pt-5 pb-3">

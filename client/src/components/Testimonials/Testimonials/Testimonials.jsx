@@ -4,14 +4,14 @@ import reducer from "./testimonialsReducer";
 import * as testimonialServices from "../../../services/testimonialServices";
 import UserContext from "../../../contexts/UserContext";
 import styles from "./Testimonials.module.css";
-import EditTestimonial from "../EditTestimonial/EditTestimonial"
+import EditTestimonial from "../EditTestimonial/EditTestimonial";
 
 export default function Testimonials() {
   const { isAuthenticated, fullName } = useContext(UserContext);
   const [testimonials, dispatch] = useReducer(reducer, []);
   const [text, setText] = useState("");
-  const [showEdit, setShowEdit] = useState(false)
-  const [editTestId, setEditTestId] = useState("")
+  const [showEdit, setShowEdit] = useState(false);
+  const [editTestId, setEditTestId] = useState("");
 
   useEffect(() => {
     testimonialServices
@@ -22,7 +22,10 @@ export default function Testimonials() {
           type: "GET_ALL_TESTIMONIALS",
           data: result,
         })
-      );
+      )
+      .catch((error) => {
+        console.error("Error in getting all testimonials:", error);
+      });
   }, []);
 
   const onChange = (e) => {
@@ -31,42 +34,51 @@ export default function Testimonials() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const newTestimonial = await testimonialServices.create(fullName, text);
 
-    dispatch({
-      type: "ADD_TESTIMONIAL",
-      data: newTestimonial,
-    });
+    try {
+      const newTestimonial = await testimonialServices.create(fullName, text);
 
-    setText("");
+      dispatch({
+        type: "ADD_TESTIMONIAL",
+        data: newTestimonial,
+      });
+
+      setText("");
+    } catch (error) {
+      console.log("Error in onSubmit:", error);
+    }
   };
 
   const deleteHandler = async (e) => {
     try {
-      await testimonialServices.remove(e.target.id); // Assuming testimonialServices.remove(id) handles the deletion
+      await testimonialServices.remove(e.target.id);
       dispatch({ type: "DELETE_TESTIMONIAL", id: e.target.id });
     } catch (error) {
-      console.error(error);
+      console.log("Error in deleting testimonial:", error);
     }
   };
 
   const editHandler = async (e) => {
-    setEditTestId(e.target.id)
-    setShowEdit(true)
+    setEditTestId(e.target.id);
+    setShowEdit(true);
   };
 
   const onClose = async () => {
-    setShowEdit(false)
-    testimonialServices
-      .getAll()
-      .then((result) => result.json())
-      .then((result) =>
-        dispatch({
-          type: "GET_ALL_TESTIMONIALS",
-          data: result,
-        })
-      );
-  }
+    setShowEdit(false);
+    
+    try {
+      const result = await testimonialServices.getAll();
+      const testimonialData = await result.json();
+  
+      dispatch({
+        type: "GET_ALL_TESTIMONIALS",
+        data: testimonialData,
+      });
+    } catch (error) {
+      console.log('Error in getting all testimonials:', error);
+    }
+  };
+  
 
   return (
     <div className={styles.mainContainer}>

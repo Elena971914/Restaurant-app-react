@@ -4,7 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import styles from "./Navbar.module.css"
 
 export default function Navbar() {
-  const { isAuthenticated, email, fullName } = useContext(UserContext);
+  const { isAuthenticated, fullName } = useContext(UserContext);
   return (
     <div className="container-xxl position-relative p-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
@@ -12,7 +12,6 @@ export default function Navbar() {
           <h1 className="text-primary m-0">
             <i className="fa fa-utensils me-3"></i>Sweet Restaurant
           </h1>
-          {/* <img src="img/logo.png" alt="Logo">  */}
         </Link>
         <button
           className="navbar-toggler"

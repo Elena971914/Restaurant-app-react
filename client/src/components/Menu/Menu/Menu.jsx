@@ -11,9 +11,16 @@ export default function Menu() {
     const [menuType, setMenuType] = useState('lunch')
 
     useEffect(() => {
-        menuServices.getAll().then(setMenu)
-        setMenuNav(menuNavItems)
-    }, [])
+        menuServices.getAll()
+          .then((result) => {
+            setMenu(result);
+            setMenuNav(menuNavItems);
+          })
+          .catch((error) => {
+            console.log('Error in useEffect:', error);
+          });
+      }, []);
+      
 
     const showMenuClickHandler = (type) => {
         setMenuType(type)

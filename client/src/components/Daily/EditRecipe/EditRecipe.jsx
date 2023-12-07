@@ -26,9 +26,14 @@ export default function AddNewRecipe() {
         imageURL: recipe?.imageURL ? recipe.imageURL : "",
       });
 
-    useEffect(() => {
-        compRecipesServices.getOne(id).then(setRecipe);
+      useEffect(() => {
+        compRecipesServices.getOne(id)
+          .then(setRecipe)
+          .catch(error => {
+            console.log('Error in useEffect:', error);
+          });
       }, [id]);
+      
 
       useEffect(() => {
         setFormValues({
@@ -131,24 +136,29 @@ export default function AddNewRecipe() {
 
   //SUBMIT
   const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const objServer = { ...formValues };
-    objServer.ingredients = formValues.ingredients.map(
-      (ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`
-    );
-    objServer.steps = formValues.steps.map((step) => `${step.step}`);
-    objServer.author = fullName || email;
-    
-    const result = await compRecipesServices.edit(objServer, id);
-    navigate(`/recipes/${recipe._id}`)
+    try {
+      e.preventDefault();
+  
+      const objServer = { ...formValues };
+      objServer.ingredients = formValues.ingredients.map(
+        (ingredient) => `${ingredient.quantity} ${ingredient.ingredient}`
+      );
+      objServer.steps = formValues.steps.map((step) => `${step.step}`);
+      objServer.author = fullName || email;
+  
+      await compRecipesServices.edit(objServer, id);
+      navigate(`/recipes/${recipe._id}`);
+    } catch (error) {
+      console.error('Error in onSubmit:', error);
+    }
   };
+  
 
   return (
     <>
   {isAuthenticated && (
-    <div className='main'>
-    <form className='form' onSubmit={onSubmit}>
+    <div className={styles.main}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <h1>Edit recipe "{recipe.name}"</h1>
       <label htmlFor="name">Title</label>
       <input
@@ -178,7 +188,7 @@ export default function AddNewRecipe() {
         onChange={changeHandler}
       />
       <br />
-      <div className='properties'>
+      <div className={styles.properties}>
         <label htmlFor="type">Type</label>
         <select id="type" name="type" onChange={changeHandler}>
           <option value="breakfast">Breakfast</option>
@@ -214,14 +224,14 @@ export default function AddNewRecipe() {
       </div>
 
       {/* INGREDIENTS  */}
-        <div className='containerOne'>
+        <div className={styles.containerOne}>
           <h4>Ingredients list</h4>
-          <div className='gridContainer'>
+          <div className={styles.gridContainer}>
             <label htmlFor="quantity">Quantity</label>
             <label htmlFor="ingredient">Ingredient</label>
           </div>
           {ingredients.map((currentIngredient, index) => (
-            <ul key={index} className='gridContainer'>
+            <ul key={index} className={styles.gridContainer}>
               <input
                 type="text"
                 name="quantity"
@@ -260,7 +270,7 @@ export default function AddNewRecipe() {
         </div>
       
 
-        <div className='stepsContainer'>
+        <div className={styles.stepsContainer}>
           <h4>Preparation steps</h4>
           {steps.map((currentStep, index) => (
             <ul key={index} className='steps'>
@@ -277,14 +287,14 @@ export default function AddNewRecipe() {
             </ul>
           ))}
           <button
-            className='addBtn'
+            className={styles.addBtn}
             type="button"
             onClick={addStepButtonHandler}
           >
             Add a step
           </button>
           <button
-            className='resetBtn'
+            className={styles.resetBtn}
             type="button"
             onClick={resetStepsButtonHandler}
           >

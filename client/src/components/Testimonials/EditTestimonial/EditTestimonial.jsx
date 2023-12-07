@@ -13,7 +13,14 @@ function EditTestimonial({ onClose, id }) {
     const {fullName} = useContext(UserContext)
   const [text, setText] = useState("");
 
-  useEffect(() => {testimonialServices.getOne(id).then((result) => setText(result.text))}, []);
+  useEffect(() => {
+    testimonialServices.getOne(id)
+      .then((result) => setText(result.text))
+      .catch((error) => {
+        console.log('Error in getting testimonial:', error);
+      });
+  }, []);
+  
 
   const onChange = (e) => {
     setText(e.target.value)

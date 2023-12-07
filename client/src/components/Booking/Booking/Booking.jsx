@@ -19,22 +19,28 @@ export default function Booking() {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    try {
+        e.preventDefault();
 
-    if (!isAuthenticated) {
-      setShowLoggedIn(true);
-    } else {
-      const data = Object.fromEntries(new FormData(e.currentTarget));
-      if (!data.name || !data.email || !data.datetime || !data.tableFor) {
-        setShowInvalid(true);
-      } else {
+        if (!isAuthenticated) {
+            setShowLoggedIn(true);
+            return;
+        }
+
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        if (!data.name || !data.email || !data.datetime || !data.tableFor) {
+            setShowInvalid(true);
+            return;
+        }
+        
         const result = await bookingServices.create(data);
         setBookingId(result._id);
         setShowModal(true);
         e.target.reset();
-      }
+    } catch (error) {
+        console.error('Error during form submission:', error);
     }
-  };
+};
 
   return (
     <>

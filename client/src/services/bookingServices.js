@@ -10,7 +10,7 @@ export const create = async (values) => {
         const result = await response.json()
         return result;
     }
-    catch (error) { console.log(error) }
+    catch (error) { console.log("Error creating booking:", error) }
 }
 
 export const getBooking = async (userId) => {
@@ -19,5 +19,5 @@ export const getBooking = async (userId) => {
         const result = await response.json()
         return result
     }
-    catch (error) { console.log(error) }
+    catch (error) { console.log("Error getting booking:", error) }
 }

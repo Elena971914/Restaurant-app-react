@@ -12,8 +12,15 @@ export default function DailyRecipeItem({
     const {userId} = useContext(UserContext)
 
     useEffect(() => {
-        likesServices.getAll().then(result => result.find(obj => obj.recipeId === _id)).then(setLikesObj)
-    }, [])
+        likesServices.getAll()
+          .then(result => result.find(obj => obj.recipeId === _id))
+          .then(setLikesObj)
+          .catch(error => {
+            console.log('Error in loading likes:', error);
+            throw error;
+          });
+      }, []);
+      
 
     const onLikeClick = () => {
         if (!likesObj.likedBy.includes(userId)) {
