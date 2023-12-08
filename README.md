@@ -1,3 +1,5 @@
+RESTAURANT APP
+
 This is SPA webpage of a restaurant. The conception is differentiated by the idea that there is a competition for best customer recipe. 
 
 The users that are not authorized can check the menu and the competitor's recipes and visit static pages.
