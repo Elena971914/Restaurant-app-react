@@ -16,7 +16,7 @@ const INITIAL_VALUES = {
   cuisine: "balkan",
   ingredients: [""],
   steps: [""],
-  author: ""
+  author: "",
 };
 
 export default function AddNewRecipe() {
@@ -29,10 +29,12 @@ export default function AddNewRecipe() {
   const [showIngredientsError, setShowIngredientsError] = useState(false);
   const [showStepsError, setShowStepsError] = useState(false);
 
-  useEffect(() => {setFormValues((prevState) => ({
-    ...prevState,
-    author: fullName || email,
-  }));}, [])
+  useEffect(() => {
+    setFormValues((prevState) => ({
+      ...prevState,
+      author: fullName || email,
+    }));
+  }, []);
 
   const changeHandler = (e, i) => {
     const { name, value, type } = e.target;
@@ -74,21 +76,24 @@ export default function AddNewRecipe() {
           setShowTitleError(true);
         } else {
           setShowTitleError(false);
-        } return
+        }
+        return;
       }
       case "cookingTime": {
         if (formValues.cookingTime < 1) {
           setShowCookingTimeError(true);
         } else {
           setShowCookingTimeError(false);
-        } return
+        }
+        return;
       }
       case "servings": {
         if (formValues.servings < 1) {
           setShowServingsError(true);
         } else {
           setShowServingsError(false);
-        } return 
+        }
+        return;
       }
       case "ingredients": {
         const ingredients = formValues.ingredients.filter(
@@ -98,7 +103,8 @@ export default function AddNewRecipe() {
           setShowIngredientsError(true);
         } else {
           setShowIngredientsError(false);
-        } return
+        }
+        return;
       }
       case "steps": {
         const steps = formValues.steps.filter((step) => step !== "");
@@ -106,7 +112,8 @@ export default function AddNewRecipe() {
           setShowStepsError(true);
         } else {
           setShowStepsError(false);
-        } return
+        }
+        return;
       }
     }
   };
@@ -118,9 +125,8 @@ export default function AddNewRecipe() {
       await likesServices.create(data);
       setFormValues(INITIAL_VALUES);
       navigate("/recipes");
-      console.log(formValues)
     } catch (error) {
-      console.error("Error in submitting:", error);
+      console.log("Error in submitting:", error);
       throw error;
     }
   };

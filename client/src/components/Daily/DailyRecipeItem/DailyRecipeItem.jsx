@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
 import { useContext, useEffect, useState } from "react";
-
 import * as likesServices from "../../../services/likesServices"
 import UserContext from '../../../contexts/UserContext';
 import styles from "./DailyRecipeItem.module.css"
@@ -8,6 +7,7 @@ import styles from "./DailyRecipeItem.module.css"
 export default function DailyRecipeItem({
     imageURL, title, author, _id
 }) {
+    const {isAuthenticated} = useContext(UserContext)
     const [likesObj, setLikesObj] = useState({})
     const {userId} = useContext(UserContext)
 
@@ -21,9 +21,8 @@ export default function DailyRecipeItem({
           });
       }, []);
       
-
     const onLikeClick = () => {
-        if (!likesObj.likedBy.includes(userId)) {
+        if (!likesObj.likedBy.includes(userId) && isAuthenticated) {
             likesObj._ownerId = userId
             likesObj.likedBy.push(userId)
             likesServices.like(likesObj._id, likesObj)
@@ -37,7 +36,7 @@ export default function DailyRecipeItem({
                     <img className="img-fluid" src={imageURL} alt=""/>
                 </div>
                 <h5 className={styles.padding}>{title}</h5>
-                <small>{author}</small>
+                <small className={styles.sm}>{author}</small>
                 <h5>Likes: {likesObj?.likedBy?.length}</h5>
                 <div className="d-flexjustify-content-center mt-3">
                     <Link className="btn btn-square btn-primary mx-1" onClick={onLikeClick}><i className="fa-solid fa-thumbs-up" style={{color: "#ffffff"}}></i></Link>

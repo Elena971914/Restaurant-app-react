@@ -20,27 +20,27 @@ export default function Booking() {
 
   const onSubmit = async (e) => {
     try {
-        e.preventDefault();
+      e.preventDefault();
 
-        if (!isAuthenticated) {
-            setShowLoggedIn(true);
-            return;
-        }
+      if (!isAuthenticated) {
+        setShowLoggedIn(true);
+        return;
+      }
 
-        const data = Object.fromEntries(new FormData(e.currentTarget));
-        if (!data.name || !data.email || !data.datetime || !data.tableFor) {
-            setShowInvalid(true);
-            return;
-        }
-        
-        const result = await bookingServices.create(data);
-        setBookingId(result._id);
-        setShowModal(true);
-        e.target.reset();
+      const data = Object.fromEntries(new FormData(e.currentTarget));
+      if (!data.name || !data.email || !data.datetime || !data.tableFor) {
+        setShowInvalid(true);
+        return;
+      }
+
+      const result = await bookingServices.create(data);
+      setBookingId(result._id);
+      setShowModal(true);
+      e.target.reset();
     } catch (error) {
-        console.error('Error during form submission:', error);
+      console.error("Error during form submission:", error);
     }
-};
+  };
 
   return (
     <>

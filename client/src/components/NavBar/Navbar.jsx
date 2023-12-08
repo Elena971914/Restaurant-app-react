@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import styles from "./Navbar.module.css"
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const { isAuthenticated, fullName } = useContext(UserContext);
+  
   return (
     <div className="container-xxl position-relative p-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
@@ -108,7 +109,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {isAuthenticated && <small className={styles.uppercase}>{fullName}</small>}
+        {isAuthenticated && (
+          <small className={styles.uppercase}>{fullName}</small>
+        )}
       </nav>
     </div>
   );

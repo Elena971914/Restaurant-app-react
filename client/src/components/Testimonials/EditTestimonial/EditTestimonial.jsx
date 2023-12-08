@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
 import * as testimonialServices from "../../../services/testimonialServices";
 import styles from "./EditTestimonial.Module.css"
 import UserContext from "../../../contexts/UserContext";
-
 
 function EditTestimonial({ onClose, id }) {
     const {fullName} = useContext(UserContext)
@@ -20,7 +17,6 @@ function EditTestimonial({ onClose, id }) {
         console.log('Error in getting testimonial:', error);
       });
   }, []);
-  
 
   const onChange = (e) => {
     setText(e.target.value)

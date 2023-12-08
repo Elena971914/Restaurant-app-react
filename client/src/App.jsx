@@ -21,7 +21,6 @@ function App() {
   return(
     <UserProvider>
     <div className="container-xxl bg-white p-0">
-      {/* <Spinner /> */}
       <Navbar />
 
       <Routes>

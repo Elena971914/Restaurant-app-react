@@ -6,7 +6,7 @@ export const getAll = async () => {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.log('Error in getAll:', error);
+        console.log('Error in getting all products:', error);
         throw error;
     }
 };

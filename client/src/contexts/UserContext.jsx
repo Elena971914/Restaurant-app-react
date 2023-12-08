@@ -13,19 +13,19 @@ export const UserProvider = ({ children }) => {
 
   const loginHandler = async (email, password) => {
     try {
-        const result = await authenticationServices.login(email, password);
-        if (result.error === "Invalid credentials") {
-            console.log("Invalid credentials. Please try again.");
-            setValid("");
-        } else {
-            localStorage.setItem("accessToken", result.accessToken);
-            setUser(result);
-            navigate("/");
-        }
+      const result = await authenticationServices.login(email, password);
+      if (result.error === "Invalid credentials") {
+        console.log("Invalid credentials. Please try again.");
+        setValid("");
+      } else {
+        localStorage.setItem("accessToken", result.accessToken);
+        setUser(result);
+        navigate("/");
+      }
     } catch (error) {
-        console.log('Error during login:', error);
+      console.log("Error during login:", error);
     }
-};
+  };
 
   const registerHandler = async (email, password, fullName) => {
     try {

@@ -2,47 +2,55 @@ import { useContext, useState, useEffect } from "react";
 import styles from "./EditRecipe.module.css";
 import UserContext from "../../../contexts/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
-import Auth from "../Auth/Auth"
-import * as compRecipesServices from "../../../services/compRecipesServices"
+import Auth from "../Auth/Auth";
+import * as compRecipesServices from "../../../services/compRecipesServices";
 
 export default function AddNewRecipe() {
-    const {id} = useParams()
-    const [showTitleError, setShowTitleError] = useState(false);
-    const [showCookingTimeError, setShowCookingTimeError] = useState(false);
-    const [showServingsError, setShowServingsError] = useState(false);
-    const [showIngredientsError, setShowIngredientsError] = useState(false);
-    const [showStepsError, setShowStepsError] = useState(false);
-    const [recipe, setRecipe] = useState({})
-    const [formValues, setFormValues] = useState({
-      author: "", title:  "", description: "", ingredients:  [''], steps: [''], type: "", 
-      servings: "", cookingTime: "", cuisine: "", imageURL: "",
+  const { id } = useParams();
+  const [showTitleError, setShowTitleError] = useState(false);
+  const [showCookingTimeError, setShowCookingTimeError] = useState(false);
+  const [showServingsError, setShowServingsError] = useState(false);
+  const [showIngredientsError, setShowIngredientsError] = useState(false);
+  const [showStepsError, setShowStepsError] = useState(false);
+  const [recipe, setRecipe] = useState({});
+  const [formValues, setFormValues] = useState({
+    author: "",
+    title: "",
+    description: "",
+    ingredients: [""],
+    steps: [""],
+    type: "",
+    servings: "",
+    cookingTime: "",
+    cuisine: "",
+    imageURL: "",
+  });
+
+  useEffect(() => {
+    compRecipesServices
+      .getOne(id)
+      .then(setRecipe)
+      .catch((error) => {
+        console.log("Error in loading recipe:", error);
       });
+  }, [id]);
 
-      useEffect(() => {
-        compRecipesServices.getOne(id)
-          .then(setRecipe)
-          .catch(error => {
-            console.log('Error in loading recipe:', error);
-          });
-      }, [id]);
-      
-      useEffect(() => {
-        setFormValues({
-            author: recipe?.author ? recipe.author : "",
-            title: recipe?.title ? recipe.title : "",
-            description: recipe?.description ? recipe.description : "",
-            ingredients: recipe?.ingredients
-              ? recipe.ingredients : [''],
-            steps: recipe?.steps ? recipe.steps : [''],
-            type: recipe?.type ? recipe.type : "",
-            servings: recipe?.servings ? recipe.servings : "",
-            cookingTime: recipe?.cookingTime ? recipe.cookingTime : "",
-            cuisine: recipe?.cuisine ? recipe.cuisine : "",
-            imageURL: recipe?.imageURL ? recipe.imageURL : "",
-        });
-      }, [recipe])
+  useEffect(() => {
+    setFormValues({
+      author: recipe?.author ? recipe.author : "",
+      title: recipe?.title ? recipe.title : "",
+      description: recipe?.description ? recipe.description : "",
+      ingredients: recipe?.ingredients ? recipe.ingredients : [""],
+      steps: recipe?.steps ? recipe.steps : [""],
+      type: recipe?.type ? recipe.type : "",
+      servings: recipe?.servings ? recipe.servings : "",
+      cookingTime: recipe?.cookingTime ? recipe.cookingTime : "",
+      cuisine: recipe?.cuisine ? recipe.cuisine : "",
+      imageURL: recipe?.imageURL ? recipe.imageURL : "",
+    });
+  }, [recipe]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { isAuthenticated, email, fullName } = useContext(UserContext);
 
   const changeHandler = (e, i) => {
@@ -89,21 +97,24 @@ export default function AddNewRecipe() {
           setShowTitleError(true);
         } else {
           setShowTitleError(false);
-        } return
+        }
+        return;
       }
       case "cookingTime": {
         if (formValues.cookingTime < 1) {
           setShowCookingTimeError(true);
         } else {
           setShowCookingTimeError(false);
-        } return
+        }
+        return;
       }
       case "servings": {
         if (formValues.servings < 1) {
           setShowServingsError(true);
         } else {
           setShowServingsError(false);
-        } return 
+        }
+        return;
       }
       case "ingredients": {
         const ingredients = formValues.ingredients.filter(
@@ -113,7 +124,8 @@ export default function AddNewRecipe() {
           setShowIngredientsError(true);
         } else {
           setShowIngredientsError(false);
-        } return
+        }
+        return;
       }
       case "steps": {
         const steps = formValues.steps.filter((step) => step !== "");
@@ -121,7 +133,8 @@ export default function AddNewRecipe() {
           setShowStepsError(true);
         } else {
           setShowStepsError(false);
-        } return
+        }
+        return;
       }
     }
   };
@@ -129,11 +142,11 @@ export default function AddNewRecipe() {
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-  
+
       await compRecipesServices.edit(formValues, id);
       navigate(`/recipes/${recipe._id}`);
     } catch (error) {
-      console.error('Error in submitting:', error);
+      console.error("Error in submitting:", error);
     }
   };
 
@@ -339,4 +352,3 @@ export default function AddNewRecipe() {
     </>
   );
 }
-

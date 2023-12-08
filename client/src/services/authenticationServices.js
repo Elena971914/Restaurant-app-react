@@ -10,7 +10,6 @@ export const login = async (email, password) => {
 
     if (!response.ok) {
         if (response.status === 403) {
-            // Handle incorrect credentials without throwing an error
             return { error: 'Invalid credentials' };
         } else {
             throw new Error('Network response was not ok.');
