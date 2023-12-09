@@ -22,7 +22,7 @@ function SuccessfulBooking({ onClose, userId }) {
       <Modal.Body>
         <p>
           {data.name}, your booking for {data.datetime} for {data.tableFor}{" "}
-          people has been made. Your special request: {data.specialRequest}
+          people has been made. Your special request: {data.specialRequest}. 
           In case of delay more than 15 minutes, please contact us.
         </p>
       </Modal.Body>

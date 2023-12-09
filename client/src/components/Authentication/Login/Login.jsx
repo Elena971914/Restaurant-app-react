@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import styles from "./Login.Module.css";
+import styles from "./Login.module.css";
 import UserContext from "../../../contexts/UserContext";
 
 export default function Login() {

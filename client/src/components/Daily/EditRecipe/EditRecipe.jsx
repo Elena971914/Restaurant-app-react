@@ -51,7 +51,7 @@ export default function AddNewRecipe() {
   }, [recipe]);
 
   const navigate = useNavigate();
-  const { isAuthenticated, email, fullName } = useContext(UserContext);
+  const { isAuthenticated } = useContext(UserContext);
 
   const changeHandler = (e, i) => {
     const { name, value, type } = e.target;

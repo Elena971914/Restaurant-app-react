@@ -72,7 +72,7 @@ export default function Navbar() {
               </div>
             </div>
             <NavLink to="/contacts" className="nav-item nav-link">
-              Contact
+              Contacts
             </NavLink>
           </div>
           <Link to="/booking" className="btn btn-primary py-2 px-4">

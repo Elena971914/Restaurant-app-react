@@ -87,13 +87,11 @@ export default function Booking() {
                     </>
                   )}
                   {showInvalid && (
-                    <p>
                       <p className={styles.redParagraph}>
                         You should fill your name, email, the date and time you
                         need a table and for how many people you want it to be.
                         Thank You!
                       </p>
-                    </p>
                   )}
                   <div className="col-md-6">
                     <div className="form-floating">

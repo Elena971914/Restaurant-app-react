@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import * as compRecipesService from "../../../services/compRecipesServices";
-import styles from "./Recipe.Module.css";
+import styles from "./Recipe.module.css";
 import UserContext from "../../../contexts/UserContext";
 import DeleteModal from "./DeleteModal/DeleteModal";
 

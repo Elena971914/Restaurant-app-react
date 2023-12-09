@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import * as testimonialServices from "../../../services/testimonialServices";
-import styles from "./EditTestimonial.Module.css"
+import styles from "./EditTestimonial.module.css"
 import UserContext from "../../../contexts/UserContext";
 
 function EditTestimonial({ onClose, id }) {
@@ -33,7 +33,7 @@ return (
         <Modal.Title>Edit your testimonial</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <textarea className="textarea" value={text} onChange={onChange}/>
+        <textarea className={styles.textarea} value={text} onChange={onChange}/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
